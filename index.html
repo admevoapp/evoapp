@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/images/logo-evoapp-icone.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comunidade EVOAPP - Conectando Amantes Radicais de Pessoas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'evo-blue': '#00f8f5',
+            'evo-purple': '#ca04ff',
+            'evo-orange': '#ff4a24',
+            primary: {
+              light: 'rgba(202, 4, 255, 0.15)', // Roxo claro (transparente) para fundos ativos
+              DEFAULT: '#ca04ff', // Roxo Elétrico (evo-purple)
+              dark: '#a203cc', // Tom mais escuro de roxo para hover/texto
+            },
+            secondary: {
+              DEFAULT: '#ff4a24',
+              dark: '#d93d1d', // Darker orange
+            },
+            light: '#F8F9FA',
+            dark: '#121212',
+            'dark-bg': '#0D0D0D',
+            surface: {
+              light: '#ffffff',
+              dark: '#1C1C1E'
+            },
+            "gray-text": "#64748b",
+            "gray-border": "#D1D5DB",
+          },
+          borderRadius: {
+            'xl': '12px',
+            '2xl': '16px',
+            '3xl': '20px',
+          },
+          boxShadow: {
+            'md3-3': '0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 3px 1px rgba(0, 0, 0, 0.05)',
+            'md3-4': '0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 4px 5px 0 rgba(0, 0, 0, 0.06)',
+            'md3-6': '0 4px 8px 3px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.08)',
+          },
+          animation: {
+            blob: "blob 7s infinite",
+            "text-shimmer": "text-shimmer 2.5s ease-out infinite alternate",
+            "bounce-slow": "bounce 3s infinite",
+            "fade-in": "fadeIn 0.5s ease-out forwards",
+          },
+          keyframes: {
+            blob: {
+              "0%": { transform: "translate(0px, 0px) scale(1)" },
+              "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+              "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+              "100%": { transform: "translate(0px, 0px) scale(1)" },
+            },
+            "text-shimmer": {
+              "0%": { backgroundPosition: "0% 50%" },
+              "100%": { backgroundPosition: "100% 50%" },
+            },
+            fadeIn: {
+              "0%": { opacity: "0", transform: "translateY(10px)" },
+              "100%": { opacity: "1", transform: "translateY(0)" },
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Estilização da Barra de Rolagem (Scrollbar) */
+
+    /* Webkit (Chrome, Edge, Safari, Opera) */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #D1D5DB;
+      /* Cor da borda do input (Light mode) */
+      border-radius: 12px;
+      /* Arredondamento igual aos inputs */
+      border: 2px solid transparent;
+      /* Margem interna simulada */
+      background-clip: content-box;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #ca04ff;
+      /* Cor de foco roxa */
+    }
+
+    /* Dark Mode Overrides */
+    html.dark ::-webkit-scrollbar-track {
+      background: #0D0D0D;
+      /* Fundo do input no Dark mode */
+    }
+
+    html.dark ::-webkit-scrollbar-thumb {
+      background-color: #4B5563;
+      /* Cinza mais escuro para o thumb */
+      border-color: #0D0D0D;
+      /* Borda combinando com o fundo */
+    }
+
+    html.dark ::-webkit-scrollbar-thumb:hover {
+      background-color: #ca04ff;
+      /* Cor de foco roxa */
+    }
+
+    /* Firefox */
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: #D1D5DB transparent;
+    }
+
+    html.dark {
+      scrollbar-color: #4B5563 #0D0D0D;
+    }
+
+    /* FIX DATE PICKER ICON VISIBILITY */
+
+    input[type="date"] {
+      /* Força esquema claro para garantir que o ícone base seja preto */
+      color-scheme: light;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 1;
+      filter: invert(0);
+      /* Padrão: Preto */
+      transition: filter 0.2s ease;
+    }
+
+    /* Dark Mode overrides */
+    html.dark input[type="date"]::-webkit-calendar-picker-indicator {
+      /* No modo escuro, inverte o preto para branco */
+      filter: invert(1);
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+
+</head>
+
+<body class="bg-light dark:bg-dark text-slate-800 dark:text-slate-200">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>
