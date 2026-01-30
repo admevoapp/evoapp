@@ -208,7 +208,7 @@ const Footer: React.FC<FooterProps> = ({ className, onNavigate, isAuthenticated 
                         <div className="bg-slate-900/50 p-5 rounded-2xl border border-slate-800 hover:border-evo-purple/50 transition-colors">
                             <p className="text-xs text-slate-500 uppercase font-semibold mb-1">Telefone</p>
                             <p className="text-slate-200 text-sm">
-                                (31) XXXXX–XXXX
+                                (31) 99999–9999
                             </p>
                         </div>
                     </div>
