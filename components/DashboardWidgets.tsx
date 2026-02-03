@@ -300,7 +300,10 @@ export const DailyReflection: React.FC = () => {
         <div className="bg-surface-light dark:bg-[#1C1C1E] rounded-2xl border border-slate-200/50 dark:border-white/10 p-6 shadow-sm mb-6">
             <div className="flex items-center mb-4 space-x-2">
                 <BrainIcon className="w-6 h-6 text-evo-purple" />
-                <h3 className="font-bold text-lg text-slate-900 dark:text-white">Reflexão do Dia</h3>
+                <div>
+                    <h3 className="font-bold text-lg text-slate-900 dark:text-white leading-none">Reflexão do Dia</h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">💬 Leve essa reflexão para o feed.</p>
+                </div>
             </div>
             <div>
                 <div className="relative pl-4 border-l-2 border-evo-purple hover:border-evo-blue transition-colors duration-300">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { User } from '../types';
 import SendBottleModal from './SendBottleModal';
-import { SparklesIcon, PaperAirplaneIcon } from './icons';
+import { BottleIcon, PaperAirplaneIcon } from './icons';
 
 interface BottleWidgetProps {
     currentUser: User;
@@ -57,7 +57,7 @@ const BottleWidget: React.FC<BottleWidgetProps> = ({ currentUser }) => {
 
                     {/* Icon */}
                     <div className="w-16 h-16 bg-purple-50 dark:bg-purple-900/20 rounded-full flex items-center justify-center mb-4 ring-4 ring-purple-50/50 dark:ring-purple-900/10">
-                        <SparklesIcon className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+                        <BottleIcon className="w-8 h-8 text-purple-600 dark:text-purple-400" />
                     </div>
 
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
@@ -94,6 +94,9 @@ const BottleWidget: React.FC<BottleWidgetProps> = ({ currentUser }) => {
                         <span>Enviar minha Garrafa</span>
                         <PaperAirplaneIcon className="w-5 h-5 transform -rotate-45 translate-y-[1px] group-hover/btn:translate-x-1 transition-transform" />
                     </button>
+                    <p className="text-xs text-slate-400 dark:text-slate-500 mt-3 text-center">
+                        Alguém pode precisar ouvir algo que você tem a dizer.
+                    </p>
                 </div>
             </div>
 

@@ -128,13 +128,17 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ favoritedUserIds, onToggl
     <div className="w-full max-w-4xl mx-auto space-y-6">
       {/* Header & Search */}
       <div className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-start space-x-3">
           <div className="p-3 bg-primary-light dark:bg-primary/20 rounded-xl text-primary-dark dark:text-evo-purple">
             <StarIcon className="w-6 h-6" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Favoritos ({favorites.length})</h1>
-            <p className="text-gray-text dark:text-slate-400">Gerencie seus perfis favoritos.</p>
+            <p className="font-bold text-slate-900 dark:text-slate-100 mt-1">⭐ Seu feed, do seu jeito</p>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mt-1">
+              Aqui você escolhe quem deseja acompanhar de perto.
+              Apenas conteúdos dos seus favoritos aparecem no seu feed.
+            </p>
           </div>
         </div>
 
@@ -150,6 +154,12 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ favoritedUserIds, onToggl
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
+      </div>
+
+      {/* Explanatory Block */}
+      <div className="text-center px-4">
+        <p className="text-sm text-gray-400 dark:text-slate-500">🤍 Conectar é caminhar junto.</p>
+        <p className="text-sm text-gray-400 dark:text-slate-500 mt-1">⭐ Favoritar é escolher quem você quer ouvir com mais frequência.</p>
       </div>
 
       {/* Favorites List */}

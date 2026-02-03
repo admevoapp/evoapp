@@ -67,10 +67,13 @@ const InputField: React.FC<{ label: string; name: string; value: string; onChang
     </div>
   );
 
-const SelectField: React.FC<{ label: string; name: string; value: string; onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; options: string[]; placeholder?: string }> =
-  ({ label, name, value, onChange, options, placeholder = "Selecione uma opção" }) => (
+const SelectField: React.FC<{ label: string; name: string; value: string; onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void; options: string[]; placeholder?: string; description?: string }> =
+  ({ label, name, value, onChange, options, placeholder = "Selecione uma opção", description }) => (
     <div>
-      <label htmlFor={name} className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">{label}</label>
+      <div className="mb-1.5 ml-1">
+        <label htmlFor={name} className="block text-sm font-medium text-slate-700 dark:text-slate-300">{label}</label>
+        {description && <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">{description}</p>}
+      </div>
       <div className="relative">
         <select
           id={name}
@@ -268,13 +271,17 @@ const SearchPage: React.FC<SearchPageProps> = ({ onViewProfile, currentUser }) =
     <div className="w-full space-y-6">
       <div className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
         {/* Updated Header with Icon */}
-        <div className="flex items-center space-x-3 mb-6">
+        <div className="flex items-start space-x-3 mb-6">
           <div className="p-3 bg-primary-light dark:bg-primary/20 rounded-xl text-primary-dark dark:text-evo-purple">
             <SearchIcon className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Busca Avançada de ARPs</h1>
-            <p className="text-gray-text dark:text-slate-400">Encontre membros da comunidade por nome, profissão ou interesses.</p>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Comece simples</h1>
+            <p className="text-gray-text dark:text-slate-400">
+              Você não precisa preencher tudo.
+              <br className="hidden sm:inline" />
+              Busque por cidade, profissão ou interesse — e deixe o resto fluir.
+            </p>
           </div>
         </div>
 
@@ -290,7 +297,10 @@ const SearchPage: React.FC<SearchPageProps> = ({ onViewProfile, currentUser }) =
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 ml-1">Status Evo</label>
+            <div className="mb-2 ml-1">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Status Evo</label>
+              <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">Representa o momento da jornada de cada ARP dentro do movimento.</p>
+            </div>
             <div className="mt-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 bg-white dark:bg-[#0D0D0D] p-4 rounded-xl border-[1.5px] border-gray-300 dark:border-gray-700">
               <CheckboxField label="Pelopes" name="pelopes" checked={searchCriteria.evoStatus.pelopes} onChange={handleCheckboxChange} />
               <CheckboxField label="Academy" name="academy" checked={searchCriteria.evoStatus.academy} onChange={handleCheckboxChange} />
@@ -315,6 +325,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ onViewProfile, currentUser }) =
             onChange={handleInputChange}
             options={behavioralProfileOptions}
             placeholder="Todos os perfis"
+            description="Ajuda você a se conectar com pessoas que se complementam ou se parecem com você."
           />
 
           <div className="flex justify-end items-center space-x-4 pt-4 border-t border-slate-200/50 dark:border-slate-700/50">
@@ -461,10 +472,16 @@ const SearchPage: React.FC<SearchPageProps> = ({ onViewProfile, currentUser }) =
               })()}
             </div>
           ) : (
-            <p className="text-center text-gray-text py-8">Nenhum resultado encontrado para sua busca.</p>
+            <div className="text-center py-8">
+              <p className="text-slate-900 dark:text-slate-100 font-medium text-lg mb-1">🤍 Ainda não encontramos ninguém com esses filtros.</p>
+              <p className="text-gray-text dark:text-slate-400">Tente uma busca mais simples — às vezes a melhor conexão vem do inesperado.</p>
+            </div>
           )
         ) : (
-          <p className="text-center text-gray-text py-8">Utilize o formulário acima para encontrar pessoas na comunidade.</p>
+          <div className="text-center py-8">
+            <p className="text-slate-900 dark:text-slate-100 font-medium text-lg mb-1">🤍 Ainda não encontramos ninguém com esses filtros.</p>
+            <p className="text-gray-text dark:text-slate-400">Tente uma busca mais simples — às vezes a melhor conexão vem do inesperado.</p>
+          </div>
         )}
       </div>
     </div>

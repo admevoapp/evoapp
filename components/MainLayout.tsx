@@ -1034,6 +1034,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
               currentPage={currentPage}
               onNavigate={handleNavigate}
             />
+            {/* Mobile Separator */}
+            <div className="my-6 border-t border-slate-200/50 dark:border-white/10" />
+
+            {/* Right Sidebar Content (Third Column) on Mobile */}
+            <div className="pb-8">
+              <SidebarRight
+                currentUser={userProfile}
+                favoritedUserIds={favoritedUserIds}
+                onToggleFavorite={handleToggleFavorite}
+                onViewProfile={handleViewProfile}
+              />
+            </div>
           </div>
         </div>
       </div>

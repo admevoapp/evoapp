@@ -37,13 +37,16 @@ const EventsPage: React.FC<EventsPageProps> = ({ onViewEvent }) => {
   return (
     <div className="w-full space-y-6">
       <div className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
-        <div className="flex items-center space-x-3 mb-2">
+        <div className="flex items-start space-x-3 mb-2">
           <div className="p-3 bg-primary-light dark:bg-primary/20 rounded-xl text-primary-dark dark:text-evo-purple">
             <CalendarIcon className="w-6 h-6" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Eventos Evo</h1>
-            <p className="text-gray-text dark:text-slate-400">Confira os próximos encontros, workshops e imersões da nossa comunidade.</p>
+            <p className="text-gray-text dark:text-slate-400">
+              <span className="block font-bold text-slate-700 dark:text-slate-200 mb-1">🤍 Experiências que fortalecem a jornada</span>
+              Aqui você encontra encontros e vivências para quem deseja ir além — no seu tempo, do seu jeito.
+            </p>
           </div>
         </div>
       </div>

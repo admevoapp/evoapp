@@ -233,17 +233,22 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
               </div>
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <button
-                  onClick={() => openAuthModal('login')}
+                  onClick={() => openAuthModal('signup')}
                   className="w-full sm:w-auto px-8 py-4 text-base font-semibold rounded-2xl shadow-md3-3 text-white bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange transition-all duration-300 hover:scale-105 hover:shadow-md3-6 focus:outline-none focus:ring-4 focus:ring-evo-purple/50"
                 >
-                  Entrar na Comunidade
+                  Criar minha conta
                 </button>
-                <button
-                  onClick={() => openAuthModal('signup')}
-                  className="w-full sm:w-auto px-8 py-4 text-base font-semibold rounded-2xl text-evo-purple bg-white border-2 border-evo-purple hover:shadow-md3-3 focus:outline-none focus:ring-4 focus:ring-evo-purple/30 transition-all duration-300"
-                >
-                  Criar uma conta ARP
-                </button>
+
+                <div className="w-full sm:w-auto p-[2px] rounded-2xl bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange transition-all duration-300 hover:scale-105 hover:shadow-md3-6 group">
+                  <button
+                    onClick={() => openAuthModal('login')}
+                    className="w-full h-full px-8 py-3.5 text-base font-semibold rounded-2xl bg-dark-bg relative flex items-center justify-center transition-all"
+                  >
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">
+                      Já tenho conta
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -278,6 +283,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
               Números que contam <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue to-evo-purple">histórias</span>
             </h2>
+            <p className="text-lg text-slate-400 mt-2">
+              Impacto gerado pelo movimento EVO ao longo dos anos
+            </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -312,9 +320,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
             Somos o lugar para você continuar a jornada do Amor Radical, transformando aprendizados em conexões e ações que impactam o mundo.
           </p>
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <PurposeCard icon={<HeartPulseIcon className="w-8 h-8 text-primary" />} title="Conexão Verdadeira" description="Encontre pessoas alinhadas com seus valores e propósito." />
-            <PurposeCard icon={<SparklesIcon className="w-8 h-8 text-primary" />} title="Continuidade da Jornada" description="Um espaço para aplicar e compartilhar os aprendizados do EVO." />
-            <PurposeCard icon={<ShieldCheckIcon className="w-8 h-8 text-primary" />} title="Rede de Apoio" description="Fortaleça-se com uma comunidade que entende e apoia seu crescimento." />
+            <PurposeCard icon={<HeartPulseIcon className="w-8 h-8 text-primary" />} title="Conexão Verdadeira" description="Pessoas alinhadas com valores, não apenas interesses." />
+            <PurposeCard icon={<SparklesIcon className="w-8 h-8 text-primary" />} title="Continuidade da Jornada" description="Um espaço para viver, praticar e compartilhar o Amor Radical." />
+            <PurposeCard icon={<ShieldCheckIcon className="w-8 h-8 text-primary" />} title="Rede de Apoio" description="Uma comunidade que caminha junto, nos desafios e nas conquistas." />
           </div>
         </div>
       </section>
@@ -335,7 +343,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
           </div>
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <FeatureCard icon={<UserCircleIcon className="w-7 h-7 text-primary m-2.5" />} title="Perfis Completos" description="Crie seu perfil com foto, profissão, status EVO e muito mais." />
-            <FeatureCard icon={<SearchIcon className="w-7 h-7 text-primary m-2.5" />} title="Busca Inteligente" description="Encontre ARPs por profissão, região ou área de atuação." />
+            <FeatureCard icon={<SearchIcon className="w-7 h-7 text-primary m-2.5" />} title="Busca Inteligente" description="Encontre ARPs por profissão, cidade, propósito ou momento de vida." />
             <FeatureCard icon={<UsersIcon className="w-7 h-7 text-primary m-2.5" />} title="Conexões Reais" description="Envie e aceite convites de conexão com outros ARPs." />
             <FeatureCard icon={<StarIcon className="w-7 h-7 text-primary m-2.5" />} title="Lista de Favoritos" description="Salve seus ARPs favoritos em uma lista privada." />
           </div>
@@ -369,7 +377,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
                   Nova Funcionalidade
                 </div>
                 <h2 className="text-4xl font-extrabold tracking-tight mb-4">
-                  Central EVO — <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue to-evo-purple">Toda comunicação em um só lugar</span>
+                  Central EVO — <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue to-evo-purple">Tudo o que você precisa acompanhar em um só lugar.</span>
                 </h2>
                 <p className="text-slate-400 text-lg leading-relaxed">
                   Centralizamos tudo o que você precisa saber para não perder nada da nossa jornada. Um dashboard premium para sua evolução.
@@ -501,8 +509,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
               onClick={() => openAuthModal('login')}
               className="px-10 py-4 text-lg font-semibold rounded-2xl shadow-md3-3 text-white bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange transition-all duration-300 hover:scale-105 hover:shadow-md3-6 focus:outline-none focus:ring-4 focus:ring-evo-purple/50"
             >
-              Entrar na Comunidade
+              Quero fazer parte da EVOAPP
             </button>
+            <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 font-medium">
+              É gratuito para começar - Leva menos de 2 minutos - Ambiente seguro e moderado
+            </p>
           </div>
         </div>
       </section>

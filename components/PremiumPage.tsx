@@ -424,10 +424,10 @@ const PremiumPage: React.FC = () => {
       <div className="py-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Tudo o que você precisa para <span className="text-evo-purple">crescer</span>
+            🌱 Crescimento acontece em camadas
           </h2>
           <p className="text-slate-600 dark:text-slate-400">
-            Uma suíte completa de ferramentas e conteúdos desenhada para quem não aceita a mediocridade.
+            Aqui estão ferramentas e conteúdos para quem sente que é hora de ir além.
           </p>
         </div>
 
@@ -502,7 +502,10 @@ const PremiumPage: React.FC = () => {
           </div>
 
           <button
-            onClick={() => setView('catalog')}
+            onClick={() => {
+              setView('catalog');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="mt-12 px-8 py-3 rounded-full border border-white/20 text-white font-semibold hover:bg-white hover:text-black transition-all duration-300"
           >
             Explorar Catálogo Completo
@@ -514,10 +517,11 @@ const PremiumPage: React.FC = () => {
       <div id="plans-section" className="py-12 scroll-mt-24">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Escolha seu plano
+            💛 Escolha consciente
           </h2>
           <p className="text-slate-600 dark:text-slate-400">
-            Comece hoje sua jornada de transformação.
+            A EVO+ é um investimento em você. <br />
+            Entre apenas quando fizer sentido para o seu momento.
           </p>
         </div>
 
@@ -604,6 +608,15 @@ const PremiumPage: React.FC = () => {
               Assinar Agora
             </button>
           </div>
+        </div>
+
+        <div className="text-center mt-12">
+          <p className="text-slate-600 dark:text-slate-400">
+            Você pode mudar ou cancelar quando quiser.
+          </p>
+          <p className="text-slate-900 dark:text-slate-200 font-medium mt-1">
+            Sem pressão. Sem culpa.
+          </p>
         </div>
       </div>
 

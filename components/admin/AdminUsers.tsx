@@ -605,7 +605,7 @@ const AdminUsers: React.FC<{ onViewProfile?: (user: any) => void }> = ({ onViewP
                         </div>
 
                         {/* Right: Actions */}
-                        <div className="flex items-center justify-end w-full lg:w-auto gap-2 border-t lg:border-t-0 border-white/5 pt-4 lg:pt-0">
+                        <div className="flex flex-wrap items-center justify-start lg:justify-end w-full lg:w-auto gap-2 border-t lg:border-t-0 border-white/5 pt-4 lg:pt-0">
 
                             <button
                                 onClick={() => handleOpenUser(user)}

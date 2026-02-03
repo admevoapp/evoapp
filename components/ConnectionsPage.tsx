@@ -179,13 +179,16 @@ const ConnectionsPage: React.FC<ConnectionsPageProps> = ({ user, onViewProfile }
     <div className="w-full max-w-4xl mx-auto space-y-6">
       {/* Header */}
       <div className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-center space-x-3">
-          <div className="p-3 bg-primary-light dark:bg-primary/20 rounded-xl text-primary-dark dark:text-evo-purple">
+        <div className="flex items-start space-x-3">
+          <div className="p-3 bg-primary-light dark:bg-primary/20 rounded-xl text-primary-dark dark:text-evo-purple shrink-0">
             <UsersIcon className="w-6 h-6" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Conexões</h1>
-            <p className="text-gray-text dark:text-slate-400">Gerencie quem você segue e quem te segue.</p>
+            <p className="text-gray-text dark:text-slate-400 mt-1">
+              <span className="block font-medium text-slate-700 dark:text-slate-300 mb-1">🤝 Aqui estão as pessoas que te inspiram e que caminham com você.</span>
+              <span className="block text-sm font-normal text-slate-500 dark:text-slate-400">Conexões no EVOAPP são sobre troca, apoio e crescimento mútuo.</span>
+            </p>
           </div>
         </div>
 
@@ -223,6 +226,13 @@ const ConnectionsPage: React.FC<ConnectionsPageProps> = ({ user, onViewProfile }
         >
           Seguidores ({followers.length})
         </button>
+      </div>
+
+      {/* Tab Description */}
+      <div className="text-sm text-slate-500 dark:text-slate-400">
+        {activeTab === 'following'
+          ? "Pessoas que você escolheu acompanhar."
+          : "Pessoas interessadas em caminhar com você."}
       </div>
 
       {/* List */}

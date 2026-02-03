@@ -124,7 +124,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ currentUser, onCreatePost }) =>
                     onChange={(e) => setContent(e.target.value)}
                     className="block w-full p-4 rounded-xl border-[1.5px] border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0D0D0D] text-slate-700 dark:text-slate-200 placeholder-gray-400 focus:border-[#A171FF] focus:outline-none focus:ring-4 focus:ring-[#A171FF]/20 transition-all duration-200 resize-none"
                     rows={3}
-                    placeholder="O que você está pensando?"
+                    placeholder="Compartilhe um aprendizado de hoje ou Algo te marcou essa semana? Ou uma reflexão, um pedido de oração ou uma conquista?"
                     disabled={isUploading}
                   ></textarea>
 

@@ -16,11 +16,88 @@ const MessagesPage: React.FC<MessagesPageProps> = ({ currentUser, targetUserId }
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedUserId, setSelectedUserId] = useState<number | string | null>(null);
   const [newMessage, setNewMessage] = useState('');
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const messageContainerRef = useRef<HTMLDivElement>(null);
+
+
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      const { scrollHeight, clientHeight } = messageContainerRef.current;
+      messageContainerRef.current.scrollTop = scrollHeight - clientHeight;
+    }
+  }, [messages]);
+
+
 
   const [conversationPartners, setConversationPartners] = useState<User[]>([]);
   const [isLoadingPartners, setIsLoadingPartners] = useState(true);
   const { showConfirm, showAlert } = useModal();
+
+  // Search & Connections State
+  const [searchTerm, setSearchTerm] = useState('');
+  const [connections, setConnections] = useState<User[]>([]);
+  const [isLoadingConnections, setIsLoadingConnections] = useState(false);
+
+  // Fetch all connections (friends/followers) for search
+  useEffect(() => {
+    const fetchConnections = async () => {
+      if (!currentUser?.id) return;
+      setIsLoadingConnections(true);
+      try {
+        // 1. Fetch "Following" (user_id = me)
+        const { data: followingData } = await supabase
+          .from('connections')
+          .select('friend_id')
+          .eq('user_id', currentUser.id)
+          .eq('status', 'active');
+
+        // 2. Fetch "Followers" (friend_id = me)
+        const { data: followersData } = await supabase
+          .from('connections')
+          .select('user_id')
+          .eq('friend_id', currentUser.id)
+          .eq('status', 'active');
+
+        const ids = new Set([
+          ...(followingData || []).map((c: any) => c.friend_id),
+          ...(followersData || []).map((c: any) => c.user_id)
+        ]);
+
+        if (ids.size === 0) {
+          setConnections([]);
+          return;
+        }
+
+        const { data: profiles, error } = await supabase
+          .from('profiles')
+          .select('id, full_name, username, avatar_url')
+          .in('id', Array.from(ids));
+
+        if (error) throw error;
+
+        const mapped: User[] = (profiles || []).map((p: any) => ({
+          id: p.id,
+          name: p.full_name || 'Usuário',
+          username: p.username || '',
+          avatarUrl: p.avatar_url || DEFAULT_AVATAR_URL,
+          // other fields optional/default
+          email: '',
+          role: 'user',
+          status: 'active',
+          level: 1,
+          xp: 0
+        }));
+
+        setConnections(mapped);
+
+      } catch (err) {
+        console.error("Error fetching connections for messages:", err);
+      } finally {
+        setIsLoadingConnections(false);
+      }
+    };
+
+    fetchConnections();
+  }, [currentUser.id]);
 
   // Fetch unique conversation partners
   const fetchPartners = async () => {
@@ -243,54 +320,118 @@ const MessagesPage: React.FC<MessagesPageProps> = ({ currentUser, targetUserId }
     }
   };
 
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+
 
   const selectedUser = useMemo(() => {
-    return conversationPartners.find(user => user.id === selectedUserId);
-  }, [selectedUserId, conversationPartners]);
+    return conversationPartners.find(user => user.id === selectedUserId) ||
+      connections.find(user => user.id === selectedUserId);
+  }, [selectedUserId, conversationPartners, connections]);
 
 
   return (
-    <div className="bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-sm overflow-hidden h-[calc(100vh-12rem)] flex">
+    <div className="bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-sm overflow-hidden h-[calc(100vh-12rem)] flex relative">
       {/* Conversation List */}
-      <div className="w-1/3 border-r border-slate-200/50 dark:border-slate-700/50 flex flex-col">
-        <div className="p-4 border-b border-slate-200/50 dark:border-slate-700/50">
-          <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Conversas</h2>
+      <div className={`${selectedUserId ? 'hidden' : 'flex'} w-full flex-col absolute relative inset-0 bg-white dark:bg-[#1A1A1A] z-10`}>
+        <div className="p-4 border-b border-slate-200/50 dark:border-slate-700/50 space-y-3">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">Mensagens</h2>
+          <div className="mt-1 mb-3">
+            <p className="font-semibold text-slate-800 dark:text-slate-200">🤍 Conversas que importam.
+              Aqui não há pressa — há presença.</p>
+          </div>
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Buscar nas conexões..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl py-2 px-4 pl-10 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 outline-none text-sm"
+            />
+            <svg className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
         </div>
         <div className="flex-1 overflow-y-auto">
-          {isLoadingPartners ? (
-            <div className="p-4 text-center text-slate-500">Carregando...</div>
-          ) : conversationPartners.length === 0 ? (
-            <div className="p-4 text-center text-slate-500">Nenhuma conversa ainda.</div>
+          {searchTerm.trim() ? (
+            // Search Mode
+            isLoadingConnections ? (
+              <div className="p-4 text-center text-slate-500">Buscando conexões...</div>
+            ) : (
+              (() => {
+                const lowerTerm = searchTerm.toLowerCase();
+                const filtered = connections.filter(u =>
+                  u.name.toLowerCase().includes(lowerTerm) ||
+                  u.username?.toLowerCase().includes(lowerTerm)
+                );
+
+                if (filtered.length === 0) {
+                  return <div className="p-4 text-center text-slate-500">Nenhum usuário encontrado.</div>;
+                }
+
+                return filtered.map(user => (
+                  <button
+                    key={user.id}
+                    onClick={() => {
+                      setSelectedUserId(user.id);
+                      setSearchTerm(''); // Clear search on selection
+                    }}
+                    className={`w-full text-left p-4 flex items-center space-x-3 transition-colors ${selectedUserId === user.id ? 'bg-primary-light dark:bg-primary/20' : 'hover:bg-slate-100 dark:hover:bg-slate-700/50'}`}
+                  >
+                    <img src={user.avatarUrl} alt={user.name} className="w-12 h-12 rounded-full object-cover" />
+                    <div className="flex-1 overflow-hidden">
+                      <p className={`font-semibold ${selectedUserId === user.id ? 'text-primary-dark dark:text-primary-light' : 'text-slate-800 dark:text-slate-200'}`}>{user.name}</p>
+                      <p className="text-xs text-slate-500 truncate">@{user.username}</p>
+                    </div>
+                  </button>
+                ));
+              })()
+            )
           ) : (
-            conversationPartners.map(user => {
-              // We stored lastMessage in the user object temporarily in logic above but types need handling
-              // For now let's just render user
-              // In a real app we'd augment the type properly
-              return (
-                <button
-                  key={user.id}
-                  onClick={() => setSelectedUserId(user.id)}
-                  className={`w-full text-left p-4 flex items-center space-x-3 transition-colors ${selectedUserId === user.id ? 'bg-primary-light dark:bg-primary/20' : 'hover:bg-slate-100 dark:hover:bg-slate-700/50'}`}
-                >
-                  <img src={user.avatarUrl} alt={user.name} className="w-12 h-12 rounded-full object-cover" />
-                  <div className="flex-1 overflow-hidden">
-                    <p className={`font-semibold ${selectedUserId === user.id ? 'text-primary-dark dark:text-primary-light' : 'text-slate-800 dark:text-slate-200'}`}>{user.name}</p>
-                  </div>
-                </button>
-              )
-            }))}
+            // Active Conversations Mode
+            isLoadingPartners ? (
+              <div className="p-4 text-center text-slate-500">Carregando...</div>
+            ) : conversationPartners.length === 0 ? (
+              <div className="p-6 text-center flex flex-col items-center justify-center space-y-2">
+                <p className="font-medium text-slate-700 dark:text-slate-300">💬 Tudo começa com uma mensagem.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
+                  Aqui você conversa com suas conexões, com respeito, intenção e cuidado.
+                </p>
+              </div>
+            ) : (
+              conversationPartners.map(user => {
+                // We stored lastMessage in the user object temporarily in logic above but types need handling
+                // For now let's just render user
+                // In a real app we'd augment the type properly
+                return (
+                  <button
+                    key={user.id}
+                    onClick={() => setSelectedUserId(user.id)}
+                    className={`w-full text-left p-4 flex items-center space-x-3 transition-colors ${selectedUserId === user.id ? 'bg-primary-light dark:bg-primary/20' : 'hover:bg-slate-100 dark:hover:bg-slate-700/50'}`}
+                  >
+                    <img src={user.avatarUrl} alt={user.name} className="w-12 h-12 rounded-full object-cover" />
+                    <div className="flex-1 overflow-hidden">
+                      <p className={`font-semibold ${selectedUserId === user.id ? 'text-primary-dark dark:text-primary-light' : 'text-slate-800 dark:text-slate-200'}`}>{user.name}</p>
+                    </div>
+                  </button>
+                )
+              })
+            )
+          )}
         </div>
       </div>
 
       {/* Chat Window */}
-      <div className="w-2/3 flex flex-col">
+      <div className={`${!selectedUserId ? 'hidden' : 'flex'} w-full flex-col bg-white dark:bg-dark relative z-0`}>
         {selectedUserId ? (
           <>
-            <div className="p-4 border-b border-slate-200/50 dark:border-slate-700/50 flex items-center justify-between">
+            <div className="p-4 border-b border-slate-200/50 dark:border-slate-700/50 flex items-center justify-between sticky top-0 bg-white dark:bg-dark z-20">
               <div className="flex items-center space-x-3">
+                <button
+                  onClick={() => setSelectedUserId(null)}
+                  className="p-2 -ml-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                </button>
                 <img src={selectedUser?.avatarUrl || DEFAULT_AVATAR_URL} alt={selectedUser?.name} className="w-10 h-10 rounded-full object-cover" />
                 <div>
                   <h3 className="font-bold text-slate-900 dark:text-slate-100">{selectedUser?.name || 'Usuário'}</h3>
@@ -304,7 +445,10 @@ const MessagesPage: React.FC<MessagesPageProps> = ({ currentUser, targetUserId }
                 <TrashIcon className="w-5 h-5" />
               </button>
             </div>
-            <div className="flex-1 p-4 overflow-y-auto bg-slate-50 dark:bg-dark">
+            <div
+              ref={messageContainerRef}
+              className="flex-1 p-4 overflow-y-auto bg-slate-50 dark:bg-dark"
+            >
               {messages.map((msg) => (
                 <div key={msg.id} className={`flex items-end ${msg.senderId === currentUser.id ? 'justify-end' : 'justify-start'} mb-4`}>
                   <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${msg.senderId === currentUser.id ? 'bg-gradient-to-br from-primary-dark to-secondary text-white rounded-br-none' : 'bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200 shadow-sm rounded-bl-none border border-slate-200 dark:border-slate-600'}`}>
@@ -313,7 +457,7 @@ const MessagesPage: React.FC<MessagesPageProps> = ({ currentUser, targetUserId }
                   </div>
                 </div>
               ))}
-              <div ref={chatEndRef} />
+
             </div>
             <div className="p-4 border-t border-slate-200/50 dark:border-slate-700/50 bg-surface-light dark:bg-surface-dark">
               <form onSubmit={handleSendMessage} className="flex items-center space-x-3">
@@ -339,7 +483,7 @@ const MessagesPage: React.FC<MessagesPageProps> = ({ currentUser, targetUserId }
             </div>
           </>
         ) : (
-          <div className="flex-1 flex flex-col items-center justify-center text-center text-gray-text dark:text-slate-400 bg-slate-50 dark:bg-dark p-8">
+          <div className="hidden flex-1 flex-col items-center justify-center text-center text-gray-text dark:text-slate-400 bg-slate-50 dark:bg-dark p-8">
             <MailIcon className="w-16 h-16 text-slate-300 dark:text-slate-600 mb-4" />
             <h3 className="text-xl font-semibold">Suas Mensagens</h3>
             <p className="max-w-xs mt-2">Selecione uma conversa na lista ao lado para começar a conversar.</p>

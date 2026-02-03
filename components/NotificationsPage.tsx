@@ -337,8 +337,9 @@ const NotificationsPage: React.FC<NotificationsPageProps> = ({ user, onViewProfi
             <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
               <BellIcon className="w-8 h-8 text-slate-400" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">Tudo em dia!</h3>
-            <p className="text-slate-500 dark:text-slate-400">Nenhuma notificação encontrada com este filtro.</p>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">🔔 Tudo em dia</h3>
+            <p className="text-slate-500 dark:text-slate-400">Aqui você será avisado apenas quando algo realmente importar:<br />
+              conexões, mensagens e interações reais.</p>
           </div>
         ) : (
           <>

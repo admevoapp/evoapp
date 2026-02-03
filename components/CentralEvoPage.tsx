@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import {
     MegaphoneIcon,
     DocumentTextIcon,
@@ -264,71 +265,70 @@ const CentralEvoPage: React.FC = () => {
             )}
 
             {/* Detail Modal */}
-            {selectedItem && (
+            {selectedItem && ReactDOM.createPortal(
                 <div
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in"
+                    className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-md p-0 md:p-4 animate-fade-in"
                     onClick={() => setSelectedItem(null)}
                 >
                     <div
-                        className="bg-surface-light dark:bg-surface-dark w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden border border-slate-200/50 dark:border-slate-700"
+                        className="bg-surface-light dark:bg-surface-dark w-full h-full md:w-full md:max-w-5xl md:h-auto md:max-h-[90vh] flex flex-col rounded-none md:rounded-2xl shadow-2xl overflow-hidden border-0 md:border border-slate-200/50 dark:border-slate-700"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="p-6">
-                            <div className="flex justify-between items-start mb-4">
-                                <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-tight pr-4">
-                                    {selectedItem.title}
-                                </h3>
-                                <button
-                                    onClick={() => setSelectedItem(null)}
-                                    className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
-                                >
-                                    <XMarkIcon className="w-6 h-6" />
-                                </button>
-                            </div>
+                        <div className="p-6 flex-shrink-0 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-[#1E1E1E]">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-tight pr-4">
+                                {selectedItem.title}
+                            </h3>
+                            <button
+                                onClick={() => setSelectedItem(null)}
+                                className="p-2 bg-slate-200 dark:bg-slate-700 rounded-full text-slate-500 hover:text-red-500 dark:text-slate-400 dark:hover:text-red-400 transition-colors"
+                            >
+                                <XMarkIcon className="w-6 h-6" />
+                            </button>
+                        </div>
 
-                            <div className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6 whitespace-pre-wrap">
+                        <div className="p-8 overflow-y-auto custom-scrollbar flex-grow bg-white dark:bg-[#121212]">
+                            <div className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed whitespace-pre-wrap max-w-none">
                                 {selectedItem.content || selectedItem.description}
                             </div>
+                        </div>
 
-                            <div className="flex items-center justify-between text-xs text-slate-500 border-t border-slate-200 dark:border-slate-800 pt-4">
+                        <div className="p-6 flex-shrink-0 bg-slate-50 dark:bg-[#1E1E1E] border-t border-slate-200 dark:border-slate-800 flex items-center justify-end space-x-4">
+                            {selectedItem.url && (selectedItem.type === 'pdf' || selectedItem.type === 'zip') && (
+                                <a href={selectedItem.url} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 px-6 py-3 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transition-colors shadow-lg shadow-green-500/20">
+                                    <DownloadIcon className="w-5 h-5" />
+                                    <span>Baixar {selectedItem.type === 'pdf' ? 'PDF' : 'Arquivo'}</span>
+                                </a>
+                            )}
 
+                            {selectedItem.url && selectedItem.type === 'video' && (
+                                <a href={selectedItem.url} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 px-6 py-3 bg-evo-purple text-white font-bold rounded-xl hover:bg-evo-purple-dark transition-colors shadow-lg shadow-evo-purple/20">
+                                    <PlayCircleIcon className="w-5 h-5" />
+                                    <span>Reproduzir Vídeo</span>
+                                </a>
+                            )}
 
-                                {selectedItem.url && (selectedItem.type === 'pdf' || selectedItem.type === 'zip') && (
-                                    <a href={selectedItem.url} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 px-4 py-2 bg-green-500/10 text-green-500 font-bold rounded-lg hover:bg-green-500/20 transition-colors">
-                                        <DownloadIcon className="w-4 h-4" />
-                                        <span>Baixar {selectedItem.type === 'pdf' ? 'PDF' : 'Arquivo'}</span>
-                                    </a>
-                                )}
+                            {selectedItem.url && selectedItem.type === 'audio' && (
+                                <div className="w-full">
+                                    <audio controls className="w-full h-10 rounded-lg outline-none">
+                                        <source src={selectedItem.url} type="audio/mpeg" />
+                                        <source src={selectedItem.url} type="audio/ogg" />
+                                        Seu navegador não suporta o elemento de áudio.
+                                    </audio>
+                                </div>
+                            )}
 
-                                {selectedItem.url && selectedItem.type === 'video' && (
-                                    <a href={selectedItem.url} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 px-4 py-2 bg-evo-purple/10 text-evo-purple font-bold rounded-lg hover:bg-evo-purple/20 transition-colors">
-                                        <PlayCircleIcon className="w-4 h-4" />
-                                        <span>Reproduzir Vídeo</span>
-                                    </a>
-                                )}
-
-                                {selectedItem.url && selectedItem.type === 'audio' && (
-                                    <div className="w-full">
-                                        <audio controls className="w-full h-10 rounded-lg outline-none">
-                                            <source src={selectedItem.url} type="audio/mpeg" />
-                                            <source src={selectedItem.url} type="audio/ogg" />
-                                            Seu navegador não suporta o elemento de áudio.
-                                        </audio>
-                                    </div>
-                                )}
-
-                                {selectedItem.type === 'text' && (
-                                    <button
-                                        onClick={() => setSelectedItem(null)}
-                                        className="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-                                    >
-                                        Fechar
-                                    </button>
-                                )}
-                            </div>
+                            {selectedItem.type === 'text' && (
+                                <button
+                                    onClick={() => setSelectedItem(null)}
+                                    className="px-6 py-3 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold rounded-xl hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors"
+                                >
+                                    Fechar
+                                </button>
+                            )}
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </div>
     );

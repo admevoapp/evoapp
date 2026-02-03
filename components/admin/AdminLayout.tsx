@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AdminSidebar from './AdminSidebar';
+import { MenuIcon } from '../icons';
 import AdminDashboard from './AdminDashboard';
 import AdminBanners from './AdminBanners';
 import AdminPosts from './AdminPosts';
@@ -24,6 +25,7 @@ interface AdminLayoutProps {
 
 const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onBackToApp, onViewProfile }) => {
   const [activeModule, setActiveModule] = useState('dashboard');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const renderModule = () => {
     switch (activeModule) {
@@ -66,13 +68,36 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onBackToApp, onView
 
   return (
     <div className="min-h-screen bg-[#0D0D0D] font-sans text-slate-200 selection:bg-evo-purple selection:text-white">
+      {/* Mobile Header */}
+      <div className="lg:hidden flex items-center justify-between p-4 bg-[#121212] border-b border-white/10 sticky top-0 z-40">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setIsSidebarOpen(true)}
+            className="p-2 -ml-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/5 active:bg-white/10 transition-colors"
+          >
+            <MenuIcon className="w-6 h-6" />
+          </button>
+          <img
+            src="/images/logo-evoapp-fundo-escuro-300x65.png"
+            alt="EVO APP"
+            className="h-6 object-contain"
+          />
+        </div>
+      </div>
+
       <AdminSidebar
         activeModule={activeModule}
-        onNavigate={setActiveModule}
+        onNavigate={(module) => {
+          setActiveModule(module);
+          setIsSidebarOpen(false);
+        }}
         onLogout={onLogout}
         onBackToApp={onBackToApp}
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
       />
-      <main className="ml-64 p-8 lg:p-12 min-h-screen transition-all duration-300">
+
+      <main className={`transition-all duration-300 min-h-screen p-4 lg:p-12 pt-8 lg:ml-64`}>
         <div className="max-w-7xl mx-auto space-y-8">
           {renderModule()}
         </div>
