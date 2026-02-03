@@ -276,9 +276,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ onViewProfile, currentUser }) =
             <SearchIcon className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Comece simples</h1>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Buscar Amantes Radicais de Pessoas</h1>
             <p className="text-gray-text dark:text-slate-400">
-              Você não precisa preencher tudo.
+              Encontre, faça conexões reais.
               <br className="hidden sm:inline" />
               Busque por cidade, profissão ou interesse — e deixe o resto fluir.
             </p>
