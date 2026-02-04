@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
+import { validateCPF } from '../lib/utils';
 import { LogoIcon, EyeIcon, EyeOffIcon } from './icons';
 
 interface AuthModalProps {
@@ -56,6 +57,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
 
         try {
             if (mode === 'signup') {
+                if (!validateCPF(cpf)) {
+                    setError('CPF inválido. Por favor, verifique os números.');
+                    setLoading(false);
+                    return;
+                }
+
                 const { error: signUpError } = await supabase.auth.signUp({
                     email,
                     password,
@@ -173,6 +180,9 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
                                         className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white"
                                         placeholder="000.000.000-00"
                                     />
+                                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                                        Exclusivo para Amantes Radicais de Pessoas
+                                    </p>
                                 </div>
                             </>
                         )}
