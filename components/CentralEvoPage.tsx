@@ -147,7 +147,7 @@ const CentralEvoPage: React.FC = () => {
                     >
                         <div>
                             <h3 className="font-bold text-slate-900 dark:text-white text-lg mb-1 group-hover:text-evo-purple transition-colors">{item.title}</h3>
-                            {item.description && <p className="text-slate-600 dark:text-slate-400 text-sm mb-2">{item.description}</p>}
+                            {item.description && <p className="text-slate-600 dark:text-slate-400 text-sm mb-2 line-clamp-3">{item.description}</p>}
                             <div className="flex items-center space-x-2 text-xs font-semibold text-slate-500 uppercase tracking-wide">
                                 <span>{item.date_display || new Date(item.created_at).toLocaleDateString('pt-BR')}</span>
                                 {item.file_size && (

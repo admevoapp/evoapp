@@ -64,7 +64,7 @@ const BannerSlider: React.FC = () => {
             className="inline-block w-full h-full bg-cover bg-center relative"
             style={{ backgroundImage: `url(${banner.imageUrl})` }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-center items-center text-center p-4">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-center items-center text-center p-4 whitespace-normal">
               <h2 className="text-white text-2xl md:text-3xl font-bold drop-shadow-lg">{banner.title}</h2>
               {banner.description && (
                 <p className="text-slate-200 mt-2 text-sm md:text-base max-w-lg drop-shadow-md">{banner.description}</p>

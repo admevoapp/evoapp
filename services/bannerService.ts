@@ -8,7 +8,7 @@ export const bannerService = {
         const { data, error } = await supabase
             .from('banners')
             .select('*')
-            .order('created_at', { ascending: false });
+            .order('created_at', { ascending: true });
 
         if (error) {
             console.error('Error fetching banners:', error);
