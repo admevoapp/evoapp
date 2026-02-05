@@ -5,9 +5,10 @@ import { LogoIcon, EyeIcon, EyeOffIcon } from './icons';
 interface UpdatePasswordModalProps {
     isOpen: boolean;
     onClose: () => void;
+    isRecovery?: boolean;
 }
 
-const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({ isOpen, onClose }) => {
+const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({ isOpen, onClose, isRecovery = false }) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -59,7 +60,7 @@ const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({ isOpen, onClo
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
-                onClick={onClose}
+                onClick={() => !isRecovery && onClose()}
             />
 
             {/* Modal Content */}
