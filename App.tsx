@@ -1,16 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from './lib/supabaseClient';
 import LandingPage from './components/LandingPage';
 import MainLayout from './components/MainLayout';
 import UpdatePasswordModal from './components/UpdatePasswordModal';
 
-console.log('App.tsx executing - initializing Supabase inline');
-
-const supabaseUrl = 'https://rsedxpjfrfwozptuwxvr.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJzZWR4cGpmcmZ3b3pwdHV3eHZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUyNDE5MjEsImV4cCI6MjA4MDgxNzkyMX0.JTZna6qkIinxwWqWLpkTQKjgZ67TEozwaw5yGBcAsko';
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+console.log('App.tsx executing');
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
