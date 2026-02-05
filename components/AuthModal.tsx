@@ -142,152 +142,170 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
                     </p>
                 </div>
 
-                {/* Form */}
+                {/* Content */}
                 <div className="px-8 pb-8">
+                    {/* Error Display */}
                     {error && (
                         <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm rounded-xl border border-red-100 dark:border-red-900/30">
                             {error}
                         </div>
                     )}
-                    {message && (
-                        <div className="mb-4 p-3 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 text-sm rounded-xl border border-green-100 dark:border-green-900/30">
-                            {message}
-                        </div>
-                    )}
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        {mode === 'signup' && (
-                            <>
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Nome Completo</label>
-                                    <input
-                                        type="text"
-                                        required={mode === 'signup'}
-                                        value={fullName}
-                                        onChange={(e) => setFullName(e.target.value)}
-                                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white"
-                                        placeholder="Seu nome"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">CPF</label>
-                                    <input
-                                        type="text"
-                                        required={mode === 'signup'}
-                                        value={cpf}
-                                        onChange={handleCpfChange}
-                                        maxLength={14}
-                                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white"
-                                        placeholder="000.000.000-00"
-                                    />
-                                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                                        Exclusivo para Amantes Radicais de Pessoas
-                                    </p>
-                                </div>
-                            </>
-                        )}
-
-                        {mode === 'forgot-password' && (
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
-                                <input
-                                    type="email"
-                                    required
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white"
-                                    placeholder="seu@email.com"
-                                />
+                    {/* Success View */}
+                    {message ? (
+                        <div className="text-center py-4">
+                            <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-xl border border-green-100 dark:border-green-900/30">
+                                <p className="font-medium">{message}</p>
                             </div>
-                        )}
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setMessage(null);
+                                    setMode('login');
+                                }}
+                                className="w-full py-3.5 bg-evo-purple text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:bg-evo-purple/90 transition-all"
+                            >
+                                Voltar para o Login
+                            </button>
+                        </div>
+                    ) : (
+                        /* Form View */
+                        <>
+                            <form onSubmit={handleSubmit} className="space-y-4">
+                                {mode === 'signup' && (
+                                    <>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Nome Completo</label>
+                                            <input
+                                                type="text"
+                                                required={mode === 'signup'}
+                                                value={fullName}
+                                                onChange={(e) => setFullName(e.target.value)}
+                                                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white"
+                                                placeholder="Seu nome"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">CPF</label>
+                                            <input
+                                                type="text"
+                                                required={mode === 'signup'}
+                                                value={cpf}
+                                                onChange={handleCpfChange}
+                                                maxLength={14}
+                                                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white"
+                                                placeholder="000.000.000-00"
+                                            />
+                                            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                                                Exclusivo para Amantes Radicais de Pessoas
+                                            </p>
+                                        </div>
+                                    </>
+                                )}
 
-                        {mode !== 'forgot-password' && (
-                            <>
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
-                                    <input
-                                        type="email"
-                                        required
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white"
-                                        placeholder="seu@email.com"
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Senha</label>
-                                    <div className="relative">
+                                {mode === 'forgot-password' && (
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
                                         <input
-                                            type={showPassword ? "text" : "password"}
+                                            type="email"
                                             required
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white pr-10"
-                                            placeholder="••••••••"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white"
+                                            placeholder="seu@email.com"
                                         />
+                                    </div>
+                                )}
+
+                                {mode !== 'forgot-password' && (
+                                    <>
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
+                                            <input
+                                                type="email"
+                                                required
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white"
+                                                placeholder="seu@email.com"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Senha</label>
+                                            <div className="relative">
+                                                <input
+                                                    type={showPassword ? "text" : "password"}
+                                                    required
+                                                    value={password}
+                                                    onChange={(e) => setPassword(e.target.value)}
+                                                    className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/20 border border-slate-200 dark:border-slate-700 focus:border-evo-purple focus:ring-2 focus:ring-evo-purple/20 outline-none transition-all dark:text-white pr-10"
+                                                    placeholder="••••••••"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setShowPassword(!showPassword)}
+                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+                                                    tabIndex={-1}
+                                                >
+                                                    {showPassword ? (
+                                                        <EyeOffIcon className="w-5 h-5" />
+                                                    ) : (
+                                                        <EyeIcon className="w-5 h-5" />
+                                                    )}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+
+                                {mode === 'login' && (
+                                    <div className="flex justify-end">
                                         <button
                                             type="button"
-                                            onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-                                            tabIndex={-1}
+                                            onClick={() => setMode('forgot-password')}
+                                            className="text-sm text-evo-purple hover:underline"
                                         >
-                                            {showPassword ? (
-                                                <EyeOffIcon className="w-5 h-5" />
-                                            ) : (
-                                                <EyeIcon className="w-5 h-5" />
-                                            )}
+                                            Esqueceu a senha?
                                         </button>
                                     </div>
-                                </div>
-                            </>
-                        )}
+                                )}
 
-                        {mode === 'login' && (
-                            <div className="flex justify-end">
                                 <button
-                                    type="button"
-                                    onClick={() => setMode('forgot-password')}
-                                    className="text-sm text-evo-purple hover:underline"
+                                    type="submit"
+                                    disabled={loading}
+                                    className="w-full py-3.5 bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed mt-2"
                                 >
-                                    Esqueceu a senha?
+                                    {loading ? 'Processando...' : (mode === 'login' ? 'Entrar' : mode === 'signup' ? 'Criar Conta' : 'Enviar Link')}
                                 </button>
+                            </form>
+
+                            <div className="mt-6 text-center">
+                                <p className="text-slate-600 dark:text-slate-400">
+                                    {mode === 'forgot-password' ? (
+                                        <button
+                                            type="button"
+                                            onClick={() => setMode('login')}
+                                            className="text-evo-purple font-semibold hover:underline"
+                                        >
+                                            Voltar para o Login
+                                        </button>
+                                    ) : (
+                                        <>
+                                            {mode === 'login' ? "Ainda não tem uma conta? " : "Já tem uma conta? "}
+                                            <button
+                                                type="button"
+                                                onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
+                                                className="text-evo-purple font-semibold hover:underline"
+                                            >
+                                                {mode === 'login' ? "Cadastre-se" : "Entre agora"}
+                                            </button>
+                                        </>
+                                    )}
+                                </p>
                             </div>
-                        )}
-
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="w-full py-3.5 bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed mt-2"
-                        >
-                            {loading ? 'Processando...' : (mode === 'login' ? 'Entrar' : mode === 'signup' ? 'Criar Conta' : 'Enviar Link')}
-                        </button>
-                    </form>
-
-                    <div className="mt-6 text-center">
-                        <p className="text-slate-600 dark:text-slate-400">
-                            {mode === 'forgot-password' ? (
-                                <button
-                                    type="button"
-                                    onClick={() => setMode('login')}
-                                    className="text-evo-purple font-semibold hover:underline"
-                                >
-                                    Voltar para o Login
-                                </button>
-                            ) : (
-                                <>
-                                    {mode === 'login' ? "Ainda não tem uma conta? " : "Já tem uma conta? "}
-                                    <button
-                                        type="button"
-                                        onClick={() => setMode(mode === 'login' ? 'signup' : 'login')}
-                                        className="text-evo-purple font-semibold hover:underline"
-                                    >
-                                        {mode === 'login' ? "Cadastre-se" : "Entre agora"}
-                                    </button>
-                                </>
-                            )}
-                        </p>
-                    </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
