@@ -114,7 +114,7 @@ const SidebarLeft: React.FC<SidebarLeftProps> = ({ user, onLogout, currentPage, 
         <NavItem icon={<UsersIcon className="w-5 h-5" />} label="Conexões" active={currentPage === 'connections'} onClick={() => onNavigate('connections')} />
         <NavItem icon={<StarIcon className="w-5 h-5" />} label="Favoritos" active={currentPage === 'favorites'} onClick={() => onNavigate('favorites')} />
         <NavItem icon={<MailIcon className="w-5 h-5" />} label="Mensagens" active={currentPage === 'messages'} onClick={() => onNavigate('messages')} />
-        <NavItem icon={<BellIcon className="w-5 h-5" />} label="Notificações" active={currentPage === 'notifications'} onClick={() => onNavigate('notifications')} />
+
         <NavItem icon={<CogIcon className="w-5 h-5" />} label="Configurações" active={currentPage === 'settings'} onClick={() => onNavigate('settings')} />
       </div>
 
