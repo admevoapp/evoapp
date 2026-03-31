@@ -57,7 +57,7 @@ const CookiesPage: React.FC = () => {
           Política de <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">Cookies</span>
         </h1>
         <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-          Entenda como utilizamos cookies para melhorar sua experiência, garantir a segurança e personalizar sua jornada no EVOAPP.
+          Entenda como utilizamos cookies para melhorar sua experiência, garantir a segurança e personalizar sua jornada no EvoCommunity.
         </p>
       </div>
 
@@ -65,7 +65,7 @@ const CookiesPage: React.FC = () => {
       <div className="max-w-4xl mx-auto bg-surface-light dark:bg-surface-dark rounded-3xl p-8 md:p-12 border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
         <div className="prose prose-slate dark:prose-invert max-w-none">
           <Text>
-            Esta Política de Cookies explica o que são cookies, como os utilizamos no EVOAPP e como você pode gerenciar suas preferências. Acreditamos na transparência total sobre o uso de seus dados.
+            Esta Política de Cookies explica o que são cookies, como os utilizamos no EvoCommunity e como você pode gerenciar suas preferências. Acreditamos na transparência total sobre o uso de seus dados.
           </Text>
 
           <SectionTitle title="1. O que são Cookies?" />
@@ -99,7 +99,7 @@ const CookiesPage: React.FC = () => {
             Você pode controlar e/ou excluir cookies conforme desejar. A maioria dos navegadores permite que você recuse o armazenamento de cookies ou exclua os que já estão armazenados.
           </Text>
           <Text>
-            No entanto, alertamos que a desativação de cookies essenciais pode afetar o funcionamento correto da plataforma EVOAPP, impedindo o login ou o uso de certas funcionalidades.
+            No entanto, alertamos que a desativação de cookies essenciais pode afetar o funcionamento correto da plataforma EvoCommunity, impedindo o login ou o uso de certas funcionalidades.
           </Text>
 
           <div className="mt-12 p-6 bg-slate-50 dark:bg-[#121212] rounded-2xl border border-slate-200 dark:border-slate-800">

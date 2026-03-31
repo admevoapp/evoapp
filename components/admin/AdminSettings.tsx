@@ -23,17 +23,17 @@ const AdminSettings: React.FC = () => {
         secondaryColor: '#ca04ff',
 
         // Landing
-        landingTitle: 'Comunidade evoapp',
+        landingTitle: 'Comunidade evocommunity',
         landingSubtitle: 'A plataforma que conecta Amantes Radicais de Pessoas em todo o Brasil e no mundo.',
         footerPhrase: 'Onde o amor encontra propósito e a evolução se torna estilo de vida.',
 
         // Contact
-        supportEmail: 'suporte@evoapp.com',
+        supportEmail: 'suporte@evocommunity.com',
         whatsapp: '5511999999999',
 
         // Socials
         socials: {
-            instagram: 'https://instagram.com/evoapp',
+            instagram: 'https://instagram.com/evocommunity',
             facebook: '',
             twitter: '',
             linkedin: '',

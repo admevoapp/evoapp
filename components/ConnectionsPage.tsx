@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { User } from '../types';
 
-import { UsersIcon, StarIcon } from './icons';
+import { UserGroupIcon, StarIcon } from './icons';
 import { DEFAULT_AVATAR_URL } from '../constants';
 import { supabase } from '../lib/supabaseClient';
 import ConfirmModal from './ConfirmModal';
@@ -181,13 +181,13 @@ const ConnectionsPage: React.FC<ConnectionsPageProps> = ({ user, onViewProfile }
       <div className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-start space-x-3">
           <div className="p-3 bg-primary-light dark:bg-primary/20 rounded-xl text-primary-dark dark:text-evo-purple shrink-0">
-            <UsersIcon className="w-6 h-6" />
+            <UserGroupIcon className="w-6 h-6" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Conexões</h1>
             <p className="text-gray-text dark:text-slate-400 mt-1">
               <span className="block font-medium text-slate-700 dark:text-slate-300 mb-1">🤝 Aqui estão as pessoas que te inspiram e que caminham com você.</span>
-              <span className="block text-sm font-normal text-slate-500 dark:text-slate-400">Conexões no EVOAPP são sobre troca, apoio e crescimento mútuo.</span>
+              <span className="block text-sm font-normal text-slate-500 dark:text-slate-400">Conexões no EvoCommunity são sobre troca, apoio e crescimento mútuo.</span>
             </p>
           </div>
         </div>
@@ -355,7 +355,7 @@ const ConnectionsPage: React.FC<ConnectionsPageProps> = ({ user, onViewProfile }
       ) : (
         <div className="bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-200/50 dark:border-slate-700/50 p-12 text-center text-gray-text">
           <div className="bg-slate-100 dark:bg-slate-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <UsersIcon className="w-8 h-8 text-slate-400" />
+            <UserGroupIcon className="w-8 h-8 text-slate-400" />
           </div>
           <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-2">
             {activeTab === 'following'

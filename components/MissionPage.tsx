@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HeartPulseIcon, SparklesIcon, ShieldCheckIcon, StarIcon, UsersIcon } from './icons';
+import { HeartPulseIcon, SparklesIcon, ShieldCheckIcon, StarIcon, UserGroupIcon } from './icons';
 
 const MissionPage: React.FC = () => {
   // Injetar animação de fade-in se não existir globalmente
@@ -84,7 +84,7 @@ const MissionPage: React.FC = () => {
         <div className="relative z-10 text-center mb-12">
           <h2 className="text-3xl font-bold text-white mb-4">Valores Inegociáveis</h2>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            Estes são os princípios que guiam cada decisão, cada linha de código e cada interação dentro do EVOAPP.
+            Estes são os princípios que guiam cada decisão, cada linha de código e cada interação dentro do EvoCommunity.
           </p>
         </div>
 
@@ -102,7 +102,7 @@ const MissionPage: React.FC = () => {
             color="bg-evo-blue"
           />
           <ValueCard
-            icon={<UsersIcon className="w-6 h-6 text-white" />}
+            icon={<UserGroupIcon className="w-6 h-6 text-white" />}
             title="Pertencimento"
             description="Criar um espaço onde ninguém se sinta excluído. Aqui, sua história importa e tem lugar."
             color="bg-evo-purple"
@@ -120,7 +120,7 @@ const MissionPage: React.FC = () => {
             color="bg-green-500"
           />
           <ValueCard
-            icon={<UsersIcon className="w-6 h-6 text-white" />}
+            icon={<UserGroupIcon className="w-6 h-6 text-white" />}
             title="Servir"
             description="Entendemos que a liderança mais alta é o serviço. Estamos aqui para ajudar o outro a brilhar."
             color="bg-orange-500"

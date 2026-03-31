@@ -151,6 +151,98 @@ const StatusModal: React.FC<{
     );
 };
 
+// Birthday Date Picker Component (Day, Month, Year)
+const BirthDatePicker: React.FC<{
+    label: string;
+    value: string; // YYYY-MM-DD
+    onChange: (date: string) => void;
+    gridClass?: string;
+}> = ({ label, value, onChange, gridClass = "col-span-12" }) => {
+    const currentYear = new Date().getFullYear();
+    const years = Array.from({ length: 110 }, (_, i) => (currentYear - i).toString()); 
+    const months = [
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    ];
+    const days = Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'));
+
+    // Parse current value
+    const [y, m, d] = value ? value.split('-') : ['', '', ''];
+
+    const handlePartChange = (part: 'y' | 'm' | 'd', newVal: string) => {
+        let newY = y;
+        let newM = m;
+        let newD = d;
+
+        if (part === 'y') newY = newVal;
+        if (part === 'm') newM = newVal;
+        if (part === 'd') newD = newVal;
+
+        // Emit YYYY-MM-DD if parts are valid, otherwise empty string/partial
+        if (newY && newM && newD) {
+            onChange(`${newY}-${newM}-${newD}`);
+        } else {
+            onChange("");
+        }
+    };
+
+    return (
+        <div className={gridClass}>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">{label}</label>
+            <div className="grid grid-cols-3 gap-3">
+                {/* Day */}
+                <div className="relative">
+                    <select
+                        value={d}
+                        onChange={(e) => handlePartChange('d', e.target.value)}
+                        className={`${baseInputStyles} h-[48px] px-3 appearance-none cursor-pointer text-sm`}
+                    >
+                        <option value="">Dia</option>
+                        {days.map(day => <option key={day} value={day}>{day}</option>)}
+                    </select>
+                    <div className="absolute inset-y-0 right-2 flex items-center pointer-events-none text-gray-400">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+
+                {/* Month */}
+                <div className="relative">
+                    <select
+                        value={m}
+                        onChange={(e) => handlePartChange('m', e.target.value)}
+                        className={`${baseInputStyles} h-[48px] px-3 appearance-none cursor-pointer text-sm`}
+                    >
+                        <option value="">Mês</option>
+                        {months.map((month, idx) => (
+                            <option key={month} value={(idx + 1).toString().padStart(2, '0')}>
+                                {month}
+                            </option>
+                        ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-2 flex items-center pointer-events-none text-gray-400">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+
+                {/* Year */}
+                <div className="relative">
+                    <select
+                        value={y}
+                        onChange={(e) => handlePartChange('y', e.target.value)}
+                        className={`${baseInputStyles} h-[48px] px-3 appearance-none cursor-pointer text-sm`}
+                    >
+                        <option value="">Ano</option>
+                        {years.map(year => <option key={year} value={year}>{year}</option>)}
+                    </select>
+                    <div className="absolute inset-y-0 right-2 flex items-center pointer-events-none text-gray-400">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 // The actual settings page component
 const SettingsPage: React.FC<SettingsPageProps> = ({ user, onUpdateUser }) => {
     const [formData, setFormData] = useState<User>(user);
@@ -588,7 +680,12 @@ const SettingsPage: React.FC<SettingsPageProps> = ({ user, onUpdateUser }) => {
                                                     null
                                     }
                                 />
-                                <InputField label="Data de Nascimento" name="birthDate" value={formData.birthDate || ''} onChange={handleInputChange} type="date" gridClass="col-span-12 sm:col-span-6" />
+                                <BirthDatePicker 
+                                    label="Data de Nascimento" 
+                                    value={formData.birthDate || ''} 
+                                    onChange={(newDate) => setFormData(prev => ({ ...prev, birthDate: newDate }))} 
+                                    gridClass="col-span-12 sm:col-span-6" 
+                                />
                                 <SelectField
                                     label="Estado Civil"
                                     name="maritalStatus"

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
-    UsersIcon, ChatBubbleIcon, CalendarIcon, DocumentTextIcon,
+    UserGroupIcon, ChatBubbleIcon, CalendarIcon, DocumentTextIcon,
     ShoppingBagIcon, DiamondIcon, MegaphoneIcon, CogIcon,
     PresentationChartLineIcon, LightningBoltIcon,
-    UserCircleIcon, BookOpenIcon
+    UserCircleIcon, BookOpenIcon, ExclamationTriangleIcon
 } from '../icons';
 import { supabase } from '../../lib/supabaseClient';
 
@@ -161,7 +161,7 @@ const AdminDashboard: React.FC<{ onNavigate: (module: string) => void }> = ({ on
         fetchData();
     }, []);
 
-    const ActivityItem = ({ title, time, type }: { title: string, time: string, type: 'success' | 'warning' | 'info' }) => (
+    const ActivityItem = ({ title, time, type }: { title: string, time: string, type: 'success' | 'warning' | 'info', key?: any }) => (
         <div className="flex items-start space-x-3 p-3 hover:bg-white/5 rounded-xl transition-colors cursor-default">
             <div className={`mt-1.5 w-2 h-2 rounded-full flex-shrink-0 ${type === 'success' ? 'bg-green-500' : type === 'warning' ? 'bg-yellow-500' : 'bg-blue-500'}`}></div>
             <div>
@@ -214,7 +214,7 @@ const AdminDashboard: React.FC<{ onNavigate: (module: string) => void }> = ({ on
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="bg-[#1C1C1E] p-4 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-evo-purple/50 transition-colors">
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <UsersIcon className="w-16 h-16 text-evo-purple" />
+                        <UserGroupIcon className="w-16 h-16 text-evo-purple" />
                     </div>
                     <div className="relative z-10">
                         <p className="text-sm text-slate-400 font-medium">Usuários Totais</p>

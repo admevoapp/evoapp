@@ -65,7 +65,7 @@ const GuidelinesPage: React.FC = () => {
       <div className="max-w-4xl mx-auto bg-surface-light dark:bg-surface-dark rounded-3xl p-8 md:p-12 border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
         <div className="prose prose-slate dark:prose-invert max-w-none">
           <Text>
-            O EVOAPP é um espaço sagrado de conexão e crescimento. Para garantir que todos se sintam seguros e bem-vindos, pedimos que você siga estas diretrizes em todas as suas interações.
+            O EvoCommunity é um espaço sagrado de conexão e crescimento. Para garantir que todos se sintam seguros e bem-vindos, pedimos que você siga estas diretrizes em todas as suas interações.
           </Text>
 
           <SectionTitle title="O que encorajamos (O Jeito ARP de Ser)" />

@@ -60,7 +60,7 @@ const PrivacyPage: React.FC = () => {
       <div className="max-w-4xl mx-auto bg-surface-light dark:bg-surface-dark rounded-3xl p-8 md:p-12 border border-slate-200/50 dark:border-slate-700/50 shadow-sm">
         <div className="prose prose-slate dark:prose-invert max-w-none">
           <Text>
-            No EVOAPP, entendemos que sua privacidade é um direito fundamental. Esta política descreve como coletamos, usamos e protegemos suas informações pessoais ao utilizar nossa plataforma.
+            No EvoCommunity, entendemos que sua privacidade é um direito fundamental. Esta política descreve como coletamos, usamos e protegemos suas informações pessoais ao utilizar nossa plataforma.
           </Text>
 
           <SectionTitle title="1. Informações que Coletamos" />
@@ -111,7 +111,7 @@ const PrivacyPage: React.FC = () => {
               <div>
                 <h3 className="font-bold text-slate-900 dark:text-white mb-2">Dúvidas sobre seus dados?</h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Se você tiver qualquer questão sobre como seus dados são tratados, entre em contato com nossa equipe de privacidade através do e-mail <span className="text-evo-purple font-medium">privacidade@evoapp.com</span>.
+                  Se você tiver qualquer questão sobre como seus dados são tratados, entre em contato com nossa equipe de privacidade através do e-mail <span className="text-evo-purple font-medium">privacidade@evocommunity.com</span>.
                 </p>
               </div>
             </div>

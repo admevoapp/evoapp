@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { User, Post, Testimonial } from '../types';
+import { User, Post, Testimonial, Page } from '../types';
 import PostCard from './PostCard';
-import { InstagramIcon, WhatsAppIcon, LinkedInIcon, QuoteIcon, XMarkIcon, PaperAirplaneIcon, LockClosedIcon, CheckCircleIcon, UsersIcon, StarIcon, TrashIcon, UserIcon, MailIcon } from './icons';
+import { InstagramIcon, WhatsAppIcon, LinkedInIcon, QuoteIcon, XMarkIcon, PaperAirplaneIcon, LockClosedIcon, CheckCircleIcon, UserGroupIcon, StarIcon, TrashIcon, UserIcon, MailIcon, CogIcon } from './icons';
 import { mockTestimonials, mockUsers, currentUser as mockCurrentUser, DEFAULT_AVATAR_URL } from '../constants';
 import { supabase } from '../lib/supabaseClient';
 import ConfirmModal from './ConfirmModal';
 import { useModal } from '../contexts/ModalContext';
+import { getProfileColors } from '../utils/profileUtils';
 
 interface ProfilePageProps {
   user: User;
@@ -19,23 +20,11 @@ interface ProfilePageProps {
   ownFavoritesCount?: number; // Count of favorites for the CURRENT user
   currentUser: User;
   onStartChat?: (userId: number | string) => void;
+  onNavigate?: (page: Page | string) => void;
 }
 
-const profileColorMap: { [key: string]: string } = {
-  '🔴': 'bg-red-500',
-  '🟡': 'bg-yellow-400',
-  '🟢': 'bg-green-500',
-  '🔵': 'bg-blue-500',
-};
 
-const getProfileColors = (profile?: string): string[] => {
-  if (!profile) return [];
-  // Match red, yellow, green, blue circle emojis
-  const emojis = profile.match(/[\u{1F534}\u{1F7E1}\u{1F7E2}\u{1F535}]/gu) || [];
-  return emojis.map(emoji => profileColorMap[emoji]).filter(Boolean);
-};
-
-const ProfilePage: React.FC<ProfilePageProps> = ({ user, posts, onLikeToggle, onDeletePost, onEditPost, isFavorited, onToggleFavorite, ownFavoritesCount, currentUser, onStartChat }) => {
+const ProfilePage: React.FC<ProfilePageProps> = ({ user, posts, onLikeToggle, onDeletePost, onEditPost, isFavorited, onToggleFavorite, ownFavoritesCount, currentUser, onStartChat, onNavigate }) => {
   const [activeTab, setActiveTab] = useState('posts');
   const behavioralColors = getProfileColors(user.behavioralProfile);
 
@@ -517,6 +506,17 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ user, posts, onLikeToggle, on
                 </button>
               </div>
             )}
+
+            {/* Owner Settings Button */}
+            {isOwnProfile && (
+              <button
+                onClick={() => onNavigate?.('settings')}
+                title="Configurações do Perfil"
+                className="p-2 rounded-full text-slate-400 hover:text-slate-900 hover:bg-slate-100 dark:hover:text-white dark:hover:bg-[#252527] transition-all"
+              >
+                <CogIcon className="w-6 h-6" />
+              </button>
+            )}
           </div>
 
           {(user.location?.city || user.location?.state) && (
@@ -648,7 +648,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ user, posts, onLikeToggle, on
                     </>
                   ) : (
                     <>
-                      <UsersIcon className="w-4 h-4" />
+                      <UserGroupIcon className="w-4 h-4" />
                       <span>Seguir</span>
                     </>
                   )}

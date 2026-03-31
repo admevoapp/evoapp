@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeartPulseIcon, SparklesIcon, UsersIcon, ShieldCheckIcon } from './icons';
+import { HeartPulseIcon, SparklesIcon, UserGroupIcon, ShieldCheckIcon } from './icons';
 
 const AboutPage: React.FC = () => {
     return (
@@ -11,7 +11,7 @@ const AboutPage: React.FC = () => {
                     Quem Somos
                 </div>
                 <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
-                    Sobre o <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">EVOAPP</span>
+                    Sobre o <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">EvoCommunity</span>
                 </h1>
                 <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto">
                     Mais do que uma rede social, somos um movimento. Uma comunidade dedicada a conectar Amantes Radicais de Pessoas que acreditam que a evolução é constante e coletiva.
@@ -29,7 +29,7 @@ const AboutPage: React.FC = () => {
                             Nascemos da necessidade de continuar a jornada. Após as imersões, os cursos e os encontros presenciais, sentíamos que a chama precisava de um lugar para continuar ardendo.
                         </p>
                         <p>
-                            O <strong>EVOAPP</strong> foi criado para ser esse lar digital. Um espaço seguro onde a vulnerabilidade é força, onde o crescimento é celebrado e onde ninguém caminha sozinho.
+                            O <strong>EvoCommunity</strong> foi criado para ser esse lar digital. Um espaço seguro onde a vulnerabilidade é força, onde o crescimento é celebrado e onde ninguém caminha sozinho.
                         </p>
                         <p>
                             Acreditamos no <strong>Amor Radical</strong>: a capacidade de aceitar, acolher e impulsionar o outro, sem julgamentos, focando sempre na melhor versão de cada um.
@@ -65,7 +65,7 @@ const AboutPage: React.FC = () => {
 
                     <div className="bg-surface-light dark:bg-surface-dark p-6 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 hover:border-evo-purple/50 transition-all group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6">
                         <div className="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                            <UsersIcon className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+                            <UserGroupIcon className="w-8 h-8 text-purple-600 dark:text-purple-400" />
                         </div>
                         <div>
                             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Comunidade Forte</h3>
@@ -95,7 +95,7 @@ const AboutPage: React.FC = () => {
                 <div className="relative z-10 max-w-4xl mx-auto text-center">
                     <h2 className="text-3xl font-bold mb-6">Nossa Origem</h2>
                     <p className="text-lg text-slate-300 mb-6">
-                        O projeto EVOAPP nasceu do desejo de manter viva a energia transformadora dos eventos presenciais. Percebemos que, ao voltar para casa, muitos se sentiam desconectados da egrégora que haviam experimentado.
+                        O projeto EvoCommunity nasceu do desejo de manter viva a energia transformadora dos eventos presenciais. Percebemos que, ao voltar para casa, muitos se sentiam desconectados da egrégora que haviam experimentado.
                     </p>
                     <p className="text-lg text-slate-300">
                         Decidimos então construir uma ponte. Uma plataforma tecnológica com coração humano. Desenvolvida por membros da comunidade, para a comunidade. Cada linha de código foi escrita pensando em como facilitar o seu próximo grande encontro, sua próxima parceria ou simplesmente aquele abraço virtual que muda o dia.

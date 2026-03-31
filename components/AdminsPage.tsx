@@ -106,7 +106,7 @@ const AdminsPage: React.FC<{ onNavigate?: (page: string) => void }> = ({ onNavig
                     Conheça nossos <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">Administradores</span>
                 </h1>
                 <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
-                    Uma equipe dedicada a manter o EVOAPP um espaço seguro, organizado e inspirador para sua jornada de evolução.
+                    Uma equipe dedicada a manter o EvoCommunity um espaço seguro, organizado e inspirador para sua jornada de evolução.
                 </p>
             </div>
 

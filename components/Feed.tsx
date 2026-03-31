@@ -3,6 +3,7 @@ import { Post, User, Page, Event } from '../types';
 import CreatePost from './CreatePost';
 import PostCard from './PostCard';
 import BannerSlider from './BannerSlider';
+import UserJourney from './UserJourney';
 import { SparklesIcon, MegaphoneIcon, ArrowRightIcon, HeartIcon, ChatBubbleIcon, ShareIcon, PaperAirplaneIcon, BrainIcon } from './icons';
 import { DEFAULT_AVATAR_URL } from '../constants';
 import { supabase } from '../lib/supabaseClient';
@@ -216,7 +217,7 @@ const Feed: React.FC<FeedProps> = ({
   const handleAdminShare = async () => {
     if (!adminPost) return;
     const shareData = {
-      title: `Confira este post no EVOAPP: ${adminPost.title}`,
+      title: `Confira este post no EvoCommunity: ${adminPost.title}`,
       text: adminPost.content,
       url: window.location.href
     };
@@ -248,6 +249,7 @@ const Feed: React.FC<FeedProps> = ({
 
       <BannerSlider />
       <DailyReflection />
+      <UserJourney currentUser={currentUser} onNavigate={onNavigate} />
 
       {/* Admin Spotlight Post */}
       {/* Admin Spotlight Post */}

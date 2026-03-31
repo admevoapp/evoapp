@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { LogoIcon, InstagramIcon, YouTubeIcon, UsersIcon } from './icons';
+import { LogoIcon, InstagramIcon, YouTubeIcon } from './icons';
 
 interface FooterProps {
     className?: string;
@@ -47,9 +47,9 @@ const Footer: React.FC<FooterProps> = ({ className, onNavigate, isAuthenticated 
                     {/* 1. Identidade (3 cols) */}
                     <div className="lg:col-span-3 space-y-6">
                         <img
-                            src="/images/logo-evoapp-fundo-escuro-300x65.png"
-                            alt="EVOAPP"
-                            className="h-10 w-auto"
+                            src="/images/logo-evocommunity-fundo-escuro-300x75.png"
+                            alt="EvoCommunity"
+                            className="h-16 md:h-20 w-auto object-contain"
                         />
                         <p className="text-slate-400 text-base leading-relaxed">
                             Conectando Amantes Radicais de Pessoas.
@@ -74,7 +74,7 @@ const Footer: React.FC<FooterProps> = ({ className, onNavigate, isAuthenticated 
                                         href="#"
                                         onClick={() => onNavigate && onNavigate('about')}
                                     >
-                                        Sobre o EVOAPP
+                                        Sobre o EvoCommunity
                                     </FooterLink>
                                     <FooterLink
                                         href="#"
@@ -151,7 +151,7 @@ const Footer: React.FC<FooterProps> = ({ className, onNavigate, isAuthenticated 
                                             href="#"
                                             onClick={() => onNavigate && onNavigate('library')}
                                         >
-                                            Biblioteca EVOAPP
+                                            Biblioteca EvoCommunity
                                         </FooterLink>
                                         <FooterLink
                                             href="#"
@@ -217,7 +217,7 @@ const Footer: React.FC<FooterProps> = ({ className, onNavigate, isAuthenticated 
                 {/* 8. Direitos */}
                 <div className="mt-16 pt-8 border-t border-slate-800 text-center">
                     <p className="text-slate-500 text-sm">
-                        © 2026 EVOAPP — Feito com amor, para Amantes Radicais de Pessoas.
+                        © 2026 EvoCommunity — Feito com amor, para Amantes Radicais de Pessoas.
                     </p>
                 </div>
             </div>

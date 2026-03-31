@@ -45,7 +45,7 @@ const BestPracticesPage: React.FC = () => {
           Boas <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">Práticas</span>
         </h1>
         <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-          Dicas essenciais para você aproveitar ao máximo o EVOAPP e construir relações valiosas.
+          Dicas essenciais para você aproveitar ao máximo o EvoCommunity e construir relações valiosas.
         </p>
       </div>
 

@@ -119,14 +119,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
                     <div className="mx-auto mb-6">
                         {/* Light Mode Logo */}
                         <img
-                            src="https://static.wixstatic.com/media/8c7f55_9b887c8ceb744ce9a6eaf5fcea98de06~mv2.png"
-                            alt="EVOAPP Logo"
+                            src="/images/logo-evocommunity-fundo-claro-300x75.png"
+                            alt="EvoCommunity Logo"
                             className="h-12 w-auto mx-auto object-contain dark:hidden"
                         />
                         {/* Dark Mode Logo */}
                         <img
-                            src="https://static.wixstatic.com/media/8c7f55_75ce25282b0a45fcadd8df9bae146b16~mv2.png"
-                            alt="EVOAPP Logo"
+                            src="/images/logo-evocommunity-fundo-escuro-300x75.png"
+                            alt="EvoCommunity Logo"
                             className="h-12 w-auto mx-auto object-contain hidden dark:block"
                         />
                     </div>

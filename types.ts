@@ -263,4 +263,5 @@ export type Page =
   | 'shop'
   | 'admin-hub'
   | 'central-evo'
+  | 'ecosystems'
   | 'notifications';

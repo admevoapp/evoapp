@@ -28,6 +28,7 @@ import PremiumPage from './PremiumPage';
 import ShopPage from './ShopPage';
 import CentralEvoPage from './CentralEvoPage';
 import NotificationsPage from './NotificationsPage'; // Import new page
+import EcosystemsPage from './EcosystemsPage';
 import { Post, Message, User, Page, Event, Notification } from '../types';
 import { mockPosts, currentUser, mockNotifications, mockUsers, mockMessages, DEFAULT_AVATAR_URL } from '../constants';
 import {
@@ -42,6 +43,7 @@ import AdminLayout from './admin/AdminLayout';
 import { useModal } from '../contexts/ModalContext';
 import { useCart } from '../contexts/CartContext';
 import CartDrawer from './CartDrawer';
+import MobileBottomNav from './MobileBottomNav';
 
 interface MainLayoutProps {
   onLogout: () => void;
@@ -705,7 +707,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
             <div className="absolute top-0 left-0 w-16 h-16 border-4 border-evo-purple border-t-transparent rounded-full animate-spin"></div>
           </div>
           <div className="flex flex-col items-center space-y-2">
-            <h2 className="text-xl font-semibold text-white">Carregando EVOAPP</h2>
+            <h2 className="text-xl font-semibold text-white">Carregando EvoCommunity</h2>
             <p className="text-slate-400">Preparando seu ecossistema de evolução...</p>
           </div>
         </div>
@@ -725,11 +727,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
             <button onClick={() => handleNavigate('feed')} className="flex items-center space-x-3 group" aria-label="Go to homepage">
               <img
                 src={isDarkMode
-                  ? "https://static.wixstatic.com/media/8c7f55_75ce25282b0a45fcadd8df9bae146b16~mv2.png"
-                  : "https://static.wixstatic.com/media/8c7f55_9b887c8ceb744ce9a6eaf5fcea98de06~mv2.png"
+                  ? "/images/logo-evocommunity-fundo-escuro-300x75.png"
+                  : "/images/logo-evocommunity-fundo-claro-300x75.png"
                 }
-                alt="EVOAPP Logo"
-                className="h-9 w-auto group-hover:scale-105 transition-transform"
+                alt="EVOCOMMUNITY Logo"
+                className="h-10 sm:h-10 w-auto group-hover:scale-105 transition-transform"
               />
             </button>
 
@@ -748,11 +750,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
 
             {/* Right: Actions */}
             <div className="flex items-center space-x-2 sm:space-x-4">
-              {/* Mobile Search Trigger */}
-              <button className="md:hidden p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white" onClick={() => handleNavigate('search')}>
-                <SearchIcon className="w-6 h-6" />
-              </button>
-
               {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
@@ -820,7 +817,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
                 <MailIcon className="w-5 h-5" />
               </button>
 
-              <div className="relative ml-2" ref={profileDropdownRef}>
+              <div className="hidden md:block relative ml-2" ref={profileDropdownRef}>
                 <button
                   onClick={() => setActiveDropdown(activeDropdown === 'profile' ? null : 'profile')}
                   className="flex items-center space-x-2 focus:outline-none"
@@ -887,7 +884,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
       <CartDrawer />
 
       {/* Main Container */}
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 flex-grow">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-28 md:pb-8 flex-grow">
         <div className="grid grid-cols-12 gap-6 lg:gap-8">
 
           {/* 2. SIDEBAR LEFT */}
@@ -929,6 +926,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
                 ownFavoritesCount={favoritedUserIds.length}
                 currentUser={userProfile}
                 onStartChat={handleStartChat}
+                onNavigate={handleNavigate}
               />
             )}
             {currentPage === 'connections' && <ConnectionsPage user={userProfile} allUsers={mockUsers} onViewProfile={handleViewProfile} />}
@@ -982,6 +980,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
             {currentPage === 'premium' && <PremiumPage />}
             {currentPage === 'shop' && <ShopPage />}
             {currentPage === 'central-evo' && <CentralEvoPage />}
+            {currentPage === 'ecosystems' && <EcosystemsPage />}
             {currentPage === 'notifications' && <NotificationsPage user={userProfile} onViewProfile={handleViewProfile} />}
           </main>
 
@@ -1012,10 +1011,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
             <div className="flex items-center space-x-2">
               <img
                 src={isDarkMode
-                  ? "https://static.wixstatic.com/media/8c7f55_75ce25282b0a45fcadd8df9bae146b16~mv2.png"
-                  : "https://static.wixstatic.com/media/8c7f55_9b887c8ceb744ce9a6eaf5fcea98de06~mv2.png"
+                  ? "/images/logo-evocommunity-fundo-escuro-300x75.png"
+                  : "/images/logo-evocommunity-fundo-claro-300x75.png"
                 }
-                alt="EVOAPP Logo"
+                alt="EvoCommunity Logo"
                 className="h-8 w-auto"
               />
             </div>
@@ -1050,10 +1049,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
         </div>
       </div>
 
-      <Footer onNavigate={handleNavigate} className="mt-12" isAuthenticated={true} />
+      <Footer onNavigate={handleNavigate} className="mt-12 mb-16 md:mb-0" isAuthenticated={true} />
 
       {/* Delete Confirmation Modal */}
 
+      <MobileBottomNav 
+        currentPage={currentPage}
+        onNavigate={handleNavigate}
+        userProfile={userProfile}
+        unreadMessagesCount={messages.filter((m) => m.receiverId === userProfile?.id && !m.isRead).length}
+      />
     </div>
   );
 };

@@ -108,8 +108,8 @@ const HelpCenterPage: React.FC<{ onNavigate?: (page: string) => void }> = ({ onN
         { q: "Como funcionam as conexões?", a: "Você pode enviar convites de conexão no perfil de outros usuários. Após aceitarem, vocês poderão trocar mensagens diretas." },
         { q: "O que são os status EVO?", a: "São selos que indicam sua jornada na comunidade (Academy, Family, Mission, etc). Você pode editá-los em seu perfil." },
         { q: "Como denuncio um comportamento?", a: "No perfil do usuário ou na postagem, clique nos três pontos e selecione 'Denunciar'. Nossa equipe analisará o caso." },
-        { q: "A plataforma é gratuita?", a: "Sim, o acesso à comunidade EVOAPP e suas funcionalidades principais é gratuito para todos os membros." },
-        { q: "Como excluir minha conta?", a: "Entre em contato com nosso suporte através do formulário abaixo ou envie um e-mail para privacidade@evoapp.com." }
+        { q: "A plataforma é gratuita?", a: "Sim, o acesso à comunidade EvoCommunity e suas funcionalidades principais é gratuito para todos os membros." },
+        { q: "Como excluir minha conta?", a: "Entre em contato com nosso suporte através do formulário abaixo ou envie um e-mail para privacidade@evocommunity.com." }
     ];
 
     const filteredFaqs = faqs.filter(f =>

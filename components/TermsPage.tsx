@@ -62,12 +62,12 @@ const TermsPage: React.FC = () => {
 
         <div className="prose prose-slate dark:prose-invert max-w-none">
           <Text>
-            Bem-vindo ao EVOAPP. Estes Termos de Uso regem seu acesso e uso de nossa plataforma. Ao acessar ou usar o EVOAPP, você concorda em cumprir estes termos. Se você não concordar com alguma parte destes termos, você não deve acessar a plataforma.
+            Bem-vindo ao EvoCommunity. Estes Termos de Uso regem seu acesso e uso de nossa plataforma. Ao acessar ou usar o EvoCommunity, você concorda em cumprir estes termos. Se você não concordar com alguma parte destes termos, você não deve acessar a plataforma.
           </Text>
 
           <SectionTitle title="1. O Propósito da Comunidade" />
           <Text>
-            O EVOAPP é uma rede social desenhada exclusivamente para conectar pessoas interessadas em desenvolvimento pessoal, evolução humana e conexões autênticas ("Amantes Radicais de Pessoas"). O uso da plataforma deve estar alinhado a esses valores.
+            O EvoCommunity é uma rede social desenhada exclusivamente para conectar pessoas interessadas em desenvolvimento pessoal, evolução humana e conexões autênticas ("Amantes Radicais de Pessoas"). O uso da plataforma deve estar alinhado a esses valores.
           </Text>
 
           <SectionTitle title="2. Conduta do Usuário" />
@@ -91,15 +91,15 @@ const TermsPage: React.FC = () => {
 
           <SectionTitle title="4. Propriedade Intelectual" />
           <Text>
-            Todo o conteúdo gerado pelo usuário (posts, fotos, comentários) permanece de propriedade do usuário. No entanto, ao publicar no EVOAPP, você nos concede uma licença não exclusiva para exibir e distribuir esse conteúdo dentro da plataforma.
+            Todo o conteúdo gerado pelo usuário (posts, fotos, comentários) permanece de propriedade do usuário. No entanto, ao publicar no EvoCommunity, você nos concede uma licença não exclusiva para exibir e distribuir esse conteúdo dentro da plataforma.
           </Text>
           <Text>
-            A marca EVOAPP, logotipo e design da plataforma são propriedade exclusiva de nossos administradores e não podem ser utilizados sem permissão expressa.
+            A marca EvoCommunity, logotipo e design da plataforma são propriedade exclusiva de nossos administradores e não podem ser utilizados sem permissão expressa.
           </Text>
 
           <SectionTitle title="5. Isenção de Responsabilidade" />
           <Text>
-            O EVOAPP serve como um canal de conexão. Não nos responsabilizamos pelas interações offline que ocorram entre os membros, nem pela veracidade das informações publicadas pelos usuários em seus perfis. Recomendamos sempre cautela e bom senso ao encontrar pessoas desconhecidas.
+            O EvoCommunity serve como um canal de conexão. Não nos responsabilizamos pelas interações offline que ocorram entre os membros, nem pela veracidade das informações publicadas pelos usuários em seus perfis. Recomendamos sempre cautela e bom senso ao encontrar pessoas desconhecidas.
           </Text>
 
           <SectionTitle title="6. Alterações nos Termos" />

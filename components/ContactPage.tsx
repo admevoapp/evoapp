@@ -89,7 +89,7 @@ const ContactPage: React.FC = () => {
           <InfoCard icon={<MailIcon className="w-6 h-6" />} title="E-mail">
             <div className="flex flex-col">
               <a href="mailto:admevoapp@gmail.com" className="text-evo-purple font-medium hover:underline">admevoapp@gmail.com</a>
-              <a href="mailto:parcerias@evoapp.com" className="text-evo-purple font-medium hover:underline mt-1">parcerias@evoapp.com</a>
+              <a href="mailto:parcerias@evocommunity.com" className="text-evo-purple font-medium hover:underline mt-1">parcerias@evocommunity.com</a>
             </div>
           </InfoCard>
 

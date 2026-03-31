@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeIcon, PhotoIcon, CalendarIcon, DocumentTextIcon, UsersIcon, CogIcon, LogoutIcon, ArrowLeftIcon, MegaphoneIcon, ShoppingBagIcon, DiamondIcon, BrainIcon, ExclamationTriangleIcon, BottleIcon, XMarkIcon } from '../icons';
+import { HomeIcon, PhotoIcon, CalendarIcon, DocumentTextIcon, UserGroupIcon, CogIcon, LogoutIcon, ArrowLeftIcon, MegaphoneIcon, ShoppingBagIcon, DiamondIcon, BrainIcon, ExclamationTriangleIcon, BottleIcon, XMarkIcon } from '../icons';
 
 interface AdminSidebarProps {
   activeModule: string;
@@ -43,7 +43,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeModule, onNavigate, o
       `}>
         <div className="p-6 flex items-center justify-between border-b border-white/10">
           <img
-            src="/images/logo-evoapp-fundo-escuro-300x65.png"
+            src="/images/logo-evocommunity-fundo-escuro-300x75.png"
             alt="EVO APP"
             className="h-8 object-contain"
           />
@@ -75,7 +75,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeModule, onNavigate, o
 
           <div className="pt-4 pb-2 px-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Sistema</div>
           <NavItem id="reports" icon={<ExclamationTriangleIcon className="w-5 h-5" />} label="Denúncias" />
-          <NavItem id="users" icon={<UsersIcon className="w-5 h-5" />} label="Usuários" />
+          <NavItem id="users" icon={<UserGroupIcon className="w-5 h-5" />} label="Usuários" />
           <NavItem id="settings" icon={<CogIcon className="w-5 h-5" />} label="Configurações" />
         </nav>
 

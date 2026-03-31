@@ -1,0 +1,5 @@
+- [x] Criar o componente `UserJourney.tsx` com as cinco listagens.
+  - [x] Implementar as validações progressivas dos dados do banco e local.
+  - [x] Implementar a modal e chamadas aos botões correspondentes ao "pendente".
+- [x] Importar e utilizar no arquivo `Feed.tsx`.
+- [x] Validar UI global e verificação dos status completados.

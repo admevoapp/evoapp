@@ -200,7 +200,7 @@ export const mockPosts: Post[] = [
   {
     id: 100,
     author: mockUsers[0], // Ana Silva (Master)
-    content: 'Sejam bem-vindos à Comunidade Oficial EVOAPP! 💜\n\nEste é o nosso espaço seguro para conexões reais e evolução constante. Aqui você pode encontrar parceiros de missão, compartilhar seus aprendizados e ficar por dentro de tudo que acontece no nosso ecossistema.\n\nSintam-se em casa. O Amor Radical nos une! 🚀',
+    content: 'Sejam bem-vindos à Comunidade Oficial EvoCommunity! 💜\n\nEste é o nosso espaço seguro para conexões reais e evolução constante. Aqui você pode encontrar parceiros de missão, compartilhar seus aprendizados e ficar por dentro de tudo que acontece no nosso ecossistema.\n\nSintam-se em casa. O Amor Radical nos une! 🚀',
     likes: 1250,
     comments: 342,
     timestamp: 'Fixado',

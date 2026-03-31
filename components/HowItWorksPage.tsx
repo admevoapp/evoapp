@@ -48,7 +48,7 @@ const HowItWorksPage: React.FC = () => {
           Guia Prático
         </div>
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
-          Como Funciona o <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">EVOAPP</span>
+          Como Funciona o <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">EvoCommunity</span>
         </h1>
         <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
           Uma jornada simples e intuitiva para você se conectar, evoluir e compartilhar com pessoas que vibram na mesma frequência.

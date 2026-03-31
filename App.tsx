@@ -87,7 +87,7 @@ const App: React.FC = () => {
         // Let's check SettingsPage imports if possible?
         // Actually, the grep showed 'SettingsPage.tsx' in the list but didn't show the import line match for UpdatePasswordModal?
         // Wait, grep output:
-        // {"File":"d:\\Evo\\EVOAPP\\APP\\components\\SettingsPage.tsx"}
+        // {"File":"d:\\Evo\\EvoCommunity\\APP\\components\\SettingsPage.tsx"}
         // This means SettingsPage.tsx DOES contain "UpdatePasswordModal" string.
         // So it might have its own instance.
         // So 'showUpdatePasswordModal' in App.tsx is EXCLUSIVELY for the recovery flow event.

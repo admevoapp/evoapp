@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { UserCircleIcon, SearchIcon, UsersIcon, StarIcon, HeartPulseIcon, SparklesIcon, ShieldCheckIcon, LogoIcon, ArrowLeftIcon, MegaphoneIcon, DocumentTextIcon, CalendarIcon, FolderIcon, MicrophoneIcon, LocationMarkerIcon, AcademicCapIcon, TrophyIcon, LightBulbIcon, PlayCircleIcon, BookOpenIcon, PresentationChartLineIcon, TagIcon, DiamondIcon } from './icons';
+import { UserCircleIcon, SearchIcon, UserGroupIcon, StarIcon, HeartPulseIcon, SparklesIcon, ShieldCheckIcon, LogoIcon, ArrowLeftIcon, MegaphoneIcon, DocumentTextIcon, CalendarIcon, FolderIcon, MicrophoneIcon, LocationMarkerIcon, AcademicCapIcon, TrophyIcon, LightBulbIcon, PlayCircleIcon, BookOpenIcon, PresentationChartLineIcon, TagIcon, DiamondIcon } from './icons';
 import AuthModal from './AuthModal';
 import Footer from './Footer';
 import AboutPage from './AboutPage';
@@ -152,14 +152,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
             </button>
             <div className="flex items-center">
               <img
-                src="/images/logo-evoapp-fundo-claro-300x65.png"
-                alt="EVOAPP"
-                className="h-8 w-auto dark:hidden opacity-80 hover:opacity-100 transition-opacity"
+                src="/images/logo-evocommunity-fundo-claro-300x75.png"
+                alt="EvoCommunity"
+                className="h-10 sm:h-12 w-auto dark:hidden opacity-80 hover:opacity-100 transition-opacity"
               />
               <img
-                src="/images/logo-evoapp-fundo-escuro-600x150.png"
-                alt="EVOAPP"
-                className="h-8 w-auto hidden dark:block opacity-80 hover:opacity-100 transition-opacity"
+                src="/images/logo-evocommunity-fundo-escuro-600x190.png"
+                alt="EvoCommunity"
+                className="h-10 sm:h-12 w-auto hidden dark:block opacity-80 hover:opacity-100 transition-opacity"
               />
             </div>
           </div>
@@ -209,20 +209,20 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
               <div className="flex justify-center lg:justify-start mb-8">
                 {!logoError ? (
                   <img
-                    src="/images/logo-evoapp-fundo-escuro-600x150.png"
-                    alt="EVOAPP"
-                    className="h-16 sm:h-24 w-auto object-contain"
+                    src="/images/logo-evocommunity-fundo-escuro-600x190.png"
+                    alt="EvoCommunity"
+                    className="h-24 sm:h-32 lg:h-40 w-auto object-contain max-w-full"
                     onError={() => setLogoError(true)}
                   />
                 ) : (
                   <div className="flex items-center space-x-3">
                     <LogoIcon className="h-16 w-16" />
-                    <span className="text-4xl font-extrabold text-white tracking-tight">EVOAPP</span>
+                    <span className="text-4xl font-extrabold text-white tracking-tight">EvoCommunity</span>
                   </div>
                 )}
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
-                Bem-vindo à <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">Comunidade EVOAPP</span>
+                Bem-vindo à <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">Comunidade EvoCommunity</span>
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0">
                 A plataforma que conecta Amantes Radicais de Pessoas em todo o Brasil e no mundo.
@@ -259,8 +259,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
 
               {/* Static Image */}
               <img
-                src="https://static.wixstatic.com/media/8c7f55_73458363a1554f8aae9323e2d46eb89b~mv2.png"
-                alt="Pessoa usando EVOAPP no celular"
+                src="/images/img-evocommunity-celular-hero.png"
+                alt="Pessoa usando EvoCommunity no celular"
                 width={456}
                 height={500}
                 className="relative z-10 object-contain"
@@ -315,7 +315,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
       {/* Purpose Section */}
       <section className="py-20 sm:py-24 bg-light">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">Por que o EVOAPP existe?</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">Por que o EvoCommunity existe?</h2>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-gray-text">
             Somos o lugar para você continuar a jornada do Amor Radical, transformando aprendizados em conexões e ações que impactam o mundo.
           </p>
@@ -344,7 +344,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <FeatureCard icon={<UserCircleIcon className="w-7 h-7 text-primary m-2.5" />} title="Perfis Completos" description="Crie seu perfil com foto, profissão, status EVO e muito mais." />
             <FeatureCard icon={<SearchIcon className="w-7 h-7 text-primary m-2.5" />} title="Busca Inteligente" description="Encontre ARPs por profissão, cidade, propósito ou momento de vida." />
-            <FeatureCard icon={<UsersIcon className="w-7 h-7 text-primary m-2.5" />} title="Conexões Reais" description="Envie e aceite convites de conexão com outros ARPs." />
+            <FeatureCard icon={<UserGroupIcon className="w-7 h-7 text-primary m-2.5" />} title="Conexões Reais" description="Envie e aceite convites de conexão com outros ARPs." />
             <FeatureCard icon={<StarIcon className="w-7 h-7 text-primary m-2.5" />} title="Lista de Favoritos" description="Salve seus ARPs favoritos em uma lista privada." />
           </div>
         </div>
@@ -443,7 +443,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
             <div className="w-full lg:w-5/12">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl group h-[600px] w-full">
                 <img
-                  src="https://static.wixstatic.com/media/8c7f55_3f86889cdcb94deb90ddf75a965ad9b5~mv2.png"
+                  src="/images/img-evocommunity-evo+.png"
                   alt="EVO+ Experience"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -502,14 +502,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
             Pronto para se conectar?
           </h2>
           <p className="mt-4 text-lg text-gray-text">
-            Junte-se à Comunidade evoapp hoje mesmo e comece a construir conexões valiosas com outros Amantes Radicais de Pessoas.
+            Junte-se à Comunidade evocommunity hoje mesmo e comece a construir conexões valiosas com outros Amantes Radicais de Pessoas.
           </p>
           <div className="mt-10">
             <button
               onClick={() => openAuthModal('login')}
               className="px-10 py-4 text-lg font-semibold rounded-2xl shadow-md3-3 text-white bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange transition-all duration-300 hover:scale-105 hover:shadow-md3-6 focus:outline-none focus:ring-4 focus:ring-evo-purple/50"
             >
-              Quero fazer parte da EVOAPP
+              Quero fazer parte da EvoCommunity
             </button>
             <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 font-medium">
               É gratuito para começar - Leva menos de 2 minutos - Ambiente seguro e moderado

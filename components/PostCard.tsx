@@ -101,11 +101,11 @@ const PostCard: React.FC<PostCardProps> = ({ post, currentUser, onLikeToggle, on
                 throw new Error('Protocolo inválido');
             }
         } catch (e) {
-            shareUrl = `https://comunidade.evoapp.com/post/${post.id}`;
+            shareUrl = `https://comunidade.evocommunity.com/post/${post.id}`;
         }
 
         const shareData = {
-            title: `Post de ${author.name} no EVOAPP`,
+            title: `Post de ${author.name} no EvoCommunity`,
             text: content,
             url: shareUrl
         };

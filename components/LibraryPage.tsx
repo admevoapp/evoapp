@@ -102,7 +102,7 @@ const LibraryPage: React.FC = () => {
 
                     {/* Title & Description */}
                     <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
-                        Biblioteca <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">EVOAPP</span>
+                        Biblioteca <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">EvoCommunity</span>
                     </h1>
                     <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto text-lg mb-10">
                         Explore nosso acervo de documentos, mídias e materiais educativos.

@@ -2,9 +2,10 @@
 import React from 'react';
 import { User, Page } from '../types';
 import {
-  HomeIcon, UserIcon, CogIcon, UsersIcon, StarIcon, MailIcon, SearchIcon,
-  CalendarIcon, ShoppingBagIcon, DiamondIcon, LightningBoltIcon, LogoutIcon, MegaphoneIcon, BellIcon
+  HomeIcon, UserIcon, CogIcon, UserGroupIcon, StarIcon, MailIcon, SearchIcon,
+  CalendarIcon, ShoppingBagIcon, DiamondIcon, LightningBoltIcon, LogoutIcon, MegaphoneIcon, BellIcon, NetworkIcon
 } from './icons';
+import { getProfileColors } from '../utils/profileUtils';
 
 interface SidebarLeftProps {
   user: User;
@@ -88,59 +89,55 @@ const SidebarLeft: React.FC<SidebarLeftProps> = ({ user, onLogout, currentPage, 
 
         {user.behavioralProfile && (
           <div className="flex items-center justify-center space-x-1 mt-1">
-            {user.behavioralProfile.toLowerCase().includes('analítico') && (
-              <div className="w-3 h-3 rounded-full bg-blue-500" title="Analítico"></div>
-            )}
-            {user.behavioralProfile.toLowerCase().includes('dominante') && (
-              <div className="w-3 h-3 rounded-full bg-red-500" title="Dominante"></div>
-            )}
-            {user.behavioralProfile.toLowerCase().includes('influente') && (
-              <div className="w-3 h-3 rounded-full bg-yellow-400" title="Influente"></div>
-            )}
-            {user.behavioralProfile.toLowerCase().includes('estável') && (
-              <div className="w-3 h-3 rounded-full bg-green-500" title="Estável"></div>
-            )}
+            {getProfileColors(user.behavioralProfile).map((colorClass, index) => (
+              <div key={index} className={`w-3 h-3 rounded-full ${colorClass}`} title={user.behavioralProfile}></div>
+            ))}
           </div>
         )}
 
         <div className="w-full h-px bg-slate-200/50 dark:bg-white/10 mt-6 mb-2"></div>
       </div>
 
-      {/* Section 1: Main Navigation */}
+      {/* 1. Página Inicial */}
       <div className="space-y-1">
         <NavItem icon={<HomeIcon className="w-5 h-5" />} label="Página Inicial" active={currentPage === 'feed'} onClick={() => onNavigate('feed')} />
-        <NavItem icon={<SearchIcon className="w-5 h-5" />} label="Buscar ARPs" active={currentPage === 'search'} onClick={() => onNavigate('search')} />
-        <NavItem icon={<UserIcon className="w-5 h-5" />} label="Meu Perfil" active={currentPage === 'profile'} onClick={() => onNavigate('profile')} />
-        <NavItem icon={<UsersIcon className="w-5 h-5" />} label="Conexões" active={currentPage === 'connections'} onClick={() => onNavigate('connections')} />
-        <NavItem icon={<StarIcon className="w-5 h-5" />} label="Favoritos" active={currentPage === 'favorites'} onClick={() => onNavigate('favorites')} />
-        <NavItem icon={<MailIcon className="w-5 h-5" />} label="Mensagens" active={currentPage === 'messages'} onClick={() => onNavigate('messages')} />
+      </div>
 
+      {/* 2. PESSOAS */}
+      <SectionTitle title="PESSOAS" />
+      <div className="space-y-1">
+        <NavItem icon={<UserGroupIcon className="w-5 h-5" />} label="Conexões" active={currentPage === 'connections'} onClick={() => onNavigate('connections')} />
+        <NavItem icon={<StarIcon className="w-5 h-5" />} label="Favoritos" active={currentPage === 'favorites'} onClick={() => onNavigate('favorites')} />
+        <NavItem icon={<SearchIcon className="w-5 h-5" />} label="Buscar ARPs" active={currentPage === 'search'} onClick={() => onNavigate('search')} />
+        <NavItem icon={<MailIcon className="w-5 h-5" />} label="Mensagens" active={currentPage === 'messages'} onClick={() => onNavigate('messages')} />
+      </div>
+
+      {/* 3. PERFIL */}
+      <SectionTitle title="PERFIL" />
+      <div className="space-y-1">
+        <NavItem icon={<UserIcon className="w-5 h-5" />} label="Meu Perfil" active={currentPage === 'profile'} onClick={() => onNavigate('profile')} />
         <NavItem icon={<CogIcon className="w-5 h-5" />} label="Configurações" active={currentPage === 'settings'} onClick={() => onNavigate('settings')} />
       </div>
 
-      {/* Section 2: Events */}
-      <SectionTitle title="Eventos" />
+      {/* 4. COMUNIDADE */}
+      <SectionTitle title="COMUNIDADE" />
       <div className="space-y-1">
+        <NavItem icon={<NetworkIcon className="w-5 h-5" />} label="Ecossistema EVO" active={currentPage === 'ecosystems'} onClick={() => onNavigate('ecosystems')} />
         <NavItem icon={<CalendarIcon className="w-5 h-5" />} label="Eventos" active={currentPage === 'events' || currentPage === 'event-details'} onClick={() => onNavigate('events')} />
+        <NavItem icon={<MegaphoneIcon className="w-5 h-5" />} label="Central EVO" active={currentPage === 'central-evo'} onClick={() => onNavigate('central-evo')} />
       </div>
 
-      {/* Section 3: Premium */}
-      <SectionTitle title="Premium" />
+      {/* 5. PREMIUM */}
+      <SectionTitle title="PREMIUM" />
       <div className="space-y-1">
         <NavItem isPremium icon={<DiamondIcon className="w-5 h-5" />} label="EVO+" active={currentPage === 'premium'} onClick={() => onNavigate('premium')} />
-      </div>
-
-      {/* Section 4: System */}
-      <SectionTitle title="Sistema" />
-      <div className="space-y-1">
-        <NavItem icon={<MegaphoneIcon className="w-5 h-5" />} label="Central EVO" active={currentPage === 'central-evo'} onClick={() => onNavigate('central-evo')} />
         <NavItem icon={<ShoppingBagIcon className="w-5 h-5" />} label="EVO Store" active={currentPage === 'shop'} onClick={() => onNavigate('shop')} />
       </div>
 
-      {/* Section 5: Admin (Conditional) */}
+      {/* 6. ADMINISTRAÇÃO */}
       {(user.app_role === 'master' || user.app_role === 'admin' || user.role === 'master') && (
         <>
-          <SectionTitle title="Administração" />
+          <SectionTitle title="ADMINISTRAÇÃO" />
           <div className="space-y-1">
             <NavItem
               isAdmin

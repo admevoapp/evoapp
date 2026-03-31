@@ -78,7 +78,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ onLogout, onBackToApp, onView
             <MenuIcon className="w-6 h-6" />
           </button>
           <img
-            src="/images/logo-evoapp-fundo-escuro-300x65.png"
+            src="/images/logo-evocommunity-fundo-escuro-300x75.png"
             alt="EVO APP"
             className="h-6 object-contain"
           />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { User, Event } from '../types';
 import { supabase } from '../lib/supabaseClient';
 import {
-    SunIcon, MoonIcon, CalendarIcon, UsersIcon,
+    SunIcon, MoonIcon, CalendarIcon, UserGroupIcon,
     SparklesIcon, ShoppingBagIcon, BookOpenIcon,
     ChatBubbleIcon, ArrowRightIcon, LocationMarkerIcon,
     BrainIcon
@@ -117,7 +117,7 @@ export const StatsOverview: React.FC<{ user: User }> = ({ user }) => {
                         <p className="text-3xl font-bold text-slate-900 dark:text-white mt-1">{stats.users}</p>
                     </div>
                     <div className="p-2 bg-purple-500/10 rounded-lg text-evo-purple">
-                        <UsersIcon className="w-6 h-6" />
+                        <UserGroupIcon className="w-6 h-6" />
                     </div>
                 </div>
                 <div className="flex items-center text-xs text-emerald-500 font-medium mt-2">
