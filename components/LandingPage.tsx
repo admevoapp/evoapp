@@ -222,7 +222,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin }) => {
                 )}
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
-                Bem-vindo à <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">Comunidade EvoCommunity</span>
+                Bem-vindo à <span className="text-transparent bg-clip-text bg-gradient-to-r from-evo-blue via-evo-purple to-evo-orange">EvoCommunity</span>
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0">
                 A plataforma que conecta Amantes Radicais de Pessoas em todo o Brasil e no mundo.

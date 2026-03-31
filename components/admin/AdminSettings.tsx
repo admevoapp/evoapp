@@ -23,7 +23,7 @@ const AdminSettings: React.FC = () => {
         secondaryColor: '#ca04ff',
 
         // Landing
-        landingTitle: 'Comunidade evocommunity',
+        landingTitle: 'Comunidade EvoCommunity',
         landingSubtitle: 'A plataforma que conecta Amantes Radicais de Pessoas em todo o Brasil e no mundo.',
         footerPhrase: 'Onde o amor encontra propósito e a evolução se torna estilo de vida.',
 

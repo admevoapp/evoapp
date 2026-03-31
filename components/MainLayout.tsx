@@ -730,7 +730,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onLogout }) => {
                   ? "/images/logo-evocommunity-fundo-escuro-300x75.png"
                   : "/images/logo-evocommunity-fundo-claro-300x75.png"
                 }
-                alt="EVOCOMMUNITY Logo"
+                alt="EvoCommunity Logo"
                 className="h-10 sm:h-10 w-auto group-hover:scale-105 transition-transform"
               />
             </button>
