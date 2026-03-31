@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { validateCPF } from '../lib/utils';
 import { LogoIcon, EyeIcon, EyeOffIcon } from './icons';
+import { translateAuthError } from '../lib/auth-errors';
 
 interface AuthModalProps {
     isOpen: boolean;
@@ -76,7 +77,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
 
                 if (signUpError) throw signUpError;
 
-                setMessage('Cadastro realizado! Verifique seu email para confirmar.');
+                setMessage('Cadastro realizado com sucesso! Enviamos um link de confirmação para o seu e-mail. Por favor, verifique sua caixa de entrada para ativar sua conta.');
             } else if (mode === 'forgot-password') {
                 const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
                     redirectTo: `${window.location.origin}`,
@@ -84,7 +85,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
 
                 if (resetError) throw resetError;
 
-                setMessage('Email de recuperação enviado! Verifique sua caixa de entrada.');
+                setMessage('Link de recuperação enviado! Verifique seu e-mail para redefinir sua senha e continuar sua jornada de evolução.');
             } else {
                 const { error: signInError } = await supabase.auth.signInWithPassword({
                     email,
@@ -97,7 +98,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
                 onClose();
             }
         } catch (err: any) {
-            setError(err.message || 'Ocorreu um erro durante a autenticação.');
+            setError(translateAuthError(err.message));
         } finally {
             setLoading(false);
         }
@@ -138,7 +139,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialMode = 'l
                             ? 'Entre para continuar sua jornada de evolução.'
                             : mode === 'signup'
                                 ? 'Junte-se à comunidade de Amantes Radicais de Pessoas.'
-                                : 'Digite seu email para receber um link de redefinição.'}
+                                : 'Esqueceu sua senha? Não se preocupe. Informe seu e-mail abaixo e enviaremos um link seguro para você criar uma nova senha.'}
                     </p>
                 </div>
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { LogoIcon, EyeIcon, EyeOffIcon } from './icons';
+import { translateAuthError } from '../lib/auth-errors';
 
 interface UpdatePasswordModalProps {
     isOpen: boolean;
@@ -44,12 +45,12 @@ const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({ isOpen, onClo
 
             if (updateError) throw updateError;
 
-            setMessage('Senha atualizada com sucesso!');
+            setMessage('Sua senha foi atualizada com sucesso! Você já pode acessar a EvoCommunity com sua nova credencial.');
             setTimeout(() => {
                 onClose();
             }, 2000);
         } catch (err: any) {
-            setError(err.message || 'Erro ao atualizar a senha.');
+            setError(translateAuthError(err.message));
         } finally {
             setLoading(false);
         }
@@ -83,7 +84,7 @@ const UpdatePasswordModal: React.FC<UpdatePasswordModalProps> = ({ isOpen, onClo
                         />
                     </div>
                     <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                        Definir nova senha
+                        Crie sua nova senha de acesso
                     </h2>
                     <p className="mt-2 text-slate-500 dark:text-slate-400">
                         Digite sua nova senha abaixo.
