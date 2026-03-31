@@ -873,7 +873,7 @@ const SettingsPage: React.FC<SettingsPageProps> = ({ user, onUpdateUser }) => {
 
                                                 // Logout and redirect
                                                 await supabase.auth.signOut();
-                                                window.location.href = '/login'; // Force reload/redirect
+                                                window.location.href = '/'; // Force reload/redirect to landing page
 
                                             } catch (error: any) {
                                                 console.error('Error deleting account:', error);

@@ -19,6 +19,10 @@ export const translateAuthError = (message: string): string => {
         // Rate Limiting
         case 'Too many requests':
             return 'Muitas tentativas em pouco tempo. Por favor, aguarde um momento antes de tentar novamente.';
+        case 'email rate limit exceeded':
+            return 'Limite de envio de e-mail excedido. Por favor, aguarde alguns minutos antes de tentar recuperar sua senha novamente.';
+        case 'Rate limit exceeded':
+            return 'Muitas solicitações em pouco tempo. Por favor, aguarde um momento.';
         
         // Forgot Password
         case 'User not found':
@@ -30,6 +34,7 @@ export const translateAuthError = (message: string): string => {
             if (message.includes('Invalid login credentials')) return 'E-mail ou senha incorretos.';
             if (message.includes('already registered')) return 'Este e-mail já está cadastrado.';
             if (message.includes('at least 6 characters')) return 'A senha deve ter pelo menos 6 caracteres.';
+            if (message.includes('rate limit exceeded')) return 'Muitas solicitações seguidas. Por favor, aguarde alguns minutos.';
             
             return message || 'Ocorreu um erro inesperado durante a autenticação.';
     }
